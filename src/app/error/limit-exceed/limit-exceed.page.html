@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start">
+        <ion-icon name="menu" style=" color:#fff;font-size: 30px;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" style="color:#fff;">Limit Exceed</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png"
+                                                                style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <section>
+    <h1 class="ion-text-center">Time to upgrade!</h1>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        <img src="https://cdn-icons-png.flaticon.com/512/12069/12069081.png" class="img-fluid">
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col">
+        <ion-button (click)="goBack()" size="small">
+          <ion-icon ios="logo-apple" md="arrow-back"></ion-icon>Back
+        </ion-button>
+        <ion-button routerLink="/my-subscription" size="small">
+          Purchase
+          <ion-icon name="cart"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <div class="row">
+      <div class="col p-4">
+        <div class="card p-3">
+          <h5><strong>You have reached to your subscription limits!</strong></h5>
+          <h5>Upgrade your plan to increase your limts.</h5>
+        </div>
+      </div>
+    </div>
+    <ion-row>
+      <ion-grid>Type</ion-grid>
+      <ion-grid>Plan Limit</ion-grid>
+      <ion-grid>Usage</ion-grid>
+      <ion-grid></ion-grid>
+    </ion-row>
+    <ion-row>
+      <ion-grid><strong>Blog</strong></ion-grid>
+      <ion-grid>{{apiData?.subscription.data.blog}}</ion-grid>
+      <ion-grid>{{apiData?.usage.blog}}</ion-grid>
+      <ion-grid><ion-badge [color]="(apiData?.subscription.data.blog>apiData?.usage.blog)?'success':'danger'">{{(apiData?.subscription.data.blog>apiData?.usage.blog)?'Available !':'Full'}}</ion-badge></ion-grid>
+    </ion-row>
+    <ion-row>
+      <ion-grid><strong>Post</strong></ion-grid>
+      <ion-grid>{{apiData?.subscription.data.post}}</ion-grid>
+      <ion-grid>{{apiData?.usage.post}}</ion-grid>
+      <ion-grid><ion-badge [color]="(apiData?.subscription.data.post>apiData?.usage.post)?'success':'danger'">{{(apiData?.subscription.data.post>apiData?.usage.post)?'Available !':'Full'}}</ion-badge></ion-grid>
+    </ion-row>
+    <ion-row>
+      <ion-grid><strong>Recipe</strong></ion-grid>
+      <ion-grid>{{apiData?.subscription.data.recipe}}</ion-grid>
+      <ion-grid>{{apiData?.usage.recipe}}</ion-grid>
+      <ion-grid><ion-badge [color]="(apiData?.subscription.data.recipe>apiData?.usage.recipe)?'success':'danger'">{{(apiData?.subscription.data.recipe>apiData?.usage.recipe)?'Available !':'Full'}}</ion-badge></ion-grid>
+
+    </ion-row>
+  </section>
+</ion-content>

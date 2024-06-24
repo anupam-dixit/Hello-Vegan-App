@@ -1,0 +1,143 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-back-button slot="start" style="color:#fff;">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Events</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png"
+          style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="blog_details_page">
+    <div class="blogimages"> <img src="{{Env.BasePoint+ eventData?.event_details.image}}">
+      <!-- <div class="blog_text_andtitel">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <div class="blog_images_topicon"><img src="/assets/icon/back_icon.png"></div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="blog_images_topiconright"><img src="/assets/icon/save_icon.png"></div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div> -->
+
+
+      <div class="blog_titel_btm">
+        <h3>{{eventData?.event_details.category_name}}</h3>
+        <h2>{{eventData?.event_details.name}}</h2>
+        <h3>Upcoming Events</h3>
+        <div class="btm_user_and_date">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12">
+                <div class="user_icon"> <img src="/assets/icon/map_icon.png" class="user-image" alt=""><span>
+                    {{eventData?.event_details.location}}</span> </div>
+              </ion-col>
+              <ion-col size="12">
+                <div class="blog_dateright"> <img
+                    src="/assets/icon/dateca.png"><span>{{eventData?.event_details.event_start_date | date:'MMM dd,
+                    yyyy'}} - {{eventData?.event_details.event_end_date | date:'MMM dd,
+                    yyyy'}}</span> </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog_allcon">
+      <p innerHtml={{eventData?.event_details.details}}></p>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <form class="form-inline" role="form" (ngSubmit)="f.form.valid && addComment()" #f="ngForm">
+          <div class="form-group">
+            <h2>LEAVE A REPLY </h2>
+            <ion-textarea id="message" name="message" [(ngModel)]="form.message" #message="ngModel"
+                          class="form-control comment_here" placeholder="Enter your comment here..." required></ion-textarea>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="post_comment">Post Comment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="event_date">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <h2>Details</h2>
+            <h3>Address:</h3>
+            <p>{{eventData?.event_details.location}}</p>
+            <h3>Start:</h3>
+            <p>{{eventData?.event_details.event_start_date | date:'MMM dd, yyyy'}}</p>
+            <h3>End:</h3>
+            <p>{{eventData?.event_details.event_end_date | date:'MMM dd, yyyy'}}</p>
+            <h3> Event Category: </h3>
+            <p> {{eventData?.event_details.category_name}}</p>
+          </ion-col>
+          <ion-col size="6">
+            <h2>Organizer</h2>
+            <p>{{eventData?.event_details.user_name}}</p>
+            <h3> Phone:</h3>
+            <p>{{eventData?.event_details.user_phone}}</p>
+            <h3> Email:</h3>
+            <p>{{eventData?.event_details.user_email}}</p>
+            <h3> Website:</h3>
+            <p> {{Env.BasePoint}} </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
+
+
+    <div class="blog_allcon">
+      <div class="event_going_button">
+        <button (click)="interstedEvent(eventData?.event_details.event_attend == '1'?0:1)">
+          <ion-icon name="checkmark-circle"></ion-icon> {{eventData?.event_details.event_attend == '1' ? 'Going' : 'Not Going'}}</button>
+        <button (click)="eventInsertNotIntersted(0)" class="not_interested_button"> <ion-icon name="close-circle"></ion-icon> Not
+          Interested </button>
+      </div>
+    </div>
+    <div class="blog_comment">
+      <div class="detailBox">
+        <div class="titleBox">
+          <label>Comment </label>
+          <!-- <button class="viewoldcommetns">View Old Commetns</button> -->
+        </div>
+        <div class="actionBox">
+          <ul class="commentList" *ngFor="let data of comments?.events_comment">
+            <li>
+              <div class="commenterImage">
+                <img src="{{Env.BasePoint+ data.users_profile_image}}" />
+              </div>
+              <div class="commentText">
+                <h2>{{data?.users_name}}</h2>
+                <p class="">{{data.message}}</p>
+                <span class="date sub-text">on {{data.created_at | date:'MMMM dd, yyyy'}}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+</ion-content>

@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <ion-icon name="menu" style=" color:#fff;font-size: 30px;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Blog</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png" style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="blog($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="recommendation_blog">
+    <div class="myrecommendation_blog">
+      <div class="titel_all">
+        <h2>Recommendation <span>Your Daily </span></h2>
+        <div class="aad_post_button" routerLink="/add-blog">
+          Add Blog
+        </div>
+      </div>
+      <div class="news_home">
+        <div class="cslide">
+          <div *ngFor="let data of blogData?.recommendations" [routerLink]="['/blog-details',data.id]">
+            <div class="cslideinner newbg" style="overflow: hidden;height: 190px;"> <img src="{{environment.liveDomain+ data.image}}">
+              <div class="myrecommendation_blog_text">
+                <h2>{{data.title}}</h2>
+                <p class="embed-content-paragraph" innerHtml="{{data.content}}"></p>
+                <span>Idea</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="blog_menu">
+    <div class="menublog_home">
+      <div class="cslide">
+        <ion-segment mode="md" [scrollable]="true" value="{{blogData?.blog_category[0].id}}" (ionChange)="segmentChanged($event)">
+          <ion-segment-button value="{{data?.id}}" *ngFor="let data of blogData?.blog_category">
+            <div class="cslideinner" style="overflow: hidden;height: 34px;">
+              <div class="blogmenu_text">
+                <h2>{{data?.name}}</h2>
+              </div>
+            </div>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+    </div>
+  </div>
+  <div class="blog_list">
+    <div class="one_tab" [routerLink]="['/blog-details',data.id]" *ngFor="let data of activeData">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="5">
+            <div class="one_bximg"> <img src="{{environment.liveDomain+ data.image}}"> </div>
+          </ion-col>
+          <ion-col size="7">
+            <div class="one_bxright">
+              <div class="embed-content-text">
+                <h2>{{data.title}}</h2>
+                <h3 class="embed-content-paragraph">
+                  <ion-icon name="calendar-outline"></ion-icon> {{data.created_at |
+                  date:'MMM dd, yyyy'}}
+                </h3>
+                <p class="embed-content-paragraph" innerHtml="{{data.content}}"></p>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

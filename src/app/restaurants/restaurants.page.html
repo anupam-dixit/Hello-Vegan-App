@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start">
+        <ion-icon name="menu" style=" color:#fff;font-size: 30px;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" style="color:#fff;">Restaurants</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png"
+          style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="blog_list">
+    <div *ngFor="let data of restaurantData?.restaurant" class="one_tab">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <div class="one_bximg" [routerLink]="['/restaurants-details',data.id]">
+              <img src="{{Env.BasePoint+data.image}}">
+            </div>
+          </ion-col>
+          <ion-col size="8">
+            <div class="one_bxright">
+              <div class="embed-content-text">
+                <h2>{{data.name}}</h2>
+                <!--<p class="embed-content-paragraph">{{data.address}}</p>-->
+                <ul>
+                  <li> Cost for two </li>
+                  <li> ₹1500 approx </li>
+                  <li> Cuisine </li>
+                  <li> Pan Asian </li>
+                </ul>
+                <ul class="button_menu">
+                  <li (click)="menu(data.menu)"><img src="/assets/icon/menu.svg"> View Menu </li>
+                  <li> <img src="/assets/icon/map.svg"> See Location </li>
+                  <li><img src="/assets/icon/cuisine.png"> Cuisine - Asian </li>
+                </ul>
+                <!-- <div class="margin-t-20 nowrap"> <span class="deal_tag radius-5 font-10 bold"> Hygienic &amp; Safe</span> <span class="grey bold deal_name space_normal "> {{data.discount}}% off on food &amp; all bev. </span> </div>-->
+                <div class="seeall">
+                  <button [routerLink]="['/restaurants-details',data.id]"> View More </button>
+                </div>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

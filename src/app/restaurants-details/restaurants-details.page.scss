@@ -1,0 +1,273 @@
+.restaurants_imag {
+  width: 100%;
+  float: left;
+}
+
+.restaurants_imag img {
+  width: 100%;
+  float: left;
+}
+
+.add_recommendation_pop .modal-body {
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 0;
+}
+
+.padding-15 {
+  padding: 15px;
+}
+
+.align-v-center {
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.margin-b-15 {
+  margin-bottom: 0;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 600;
+  font-weight: 600;
+  padding: 0;
+  text-transform: capitalize;
+  margin: 3px 0 0;
+}
+
+.align-v-center {
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+.grey-darker {
+  color: #212121;
+  float: left;
+  padding: 0 3px;
+}
+
+.padding-r-5 {
+  padding-right: 5px;
+}
+
+.text-blue {
+  color: #000;
+  font-size: 16px;
+}
+
+.align-f-end {
+  align-items: flex-end;
+}
+
+.align-v-center {
+  align-items: center;
+}
+
+.padding-r-5 {
+  padding-right: 5px;
+}
+
+.grey-another {
+  color: #616161;
+}
+
+.bg-white.grey.padding-15.shadow.about_rel_info.padding-b-0 {
+  width: 100%;
+  float: left;
+}
+
+.light-green {
+  color: #43a047;
+}
+
+.padding-b-5 span {
+  font-size: 14px;
+}
+
+.margin-t-20 {
+  margin-top: 20px;
+}
+
+.gallery_main {
+  width: 100%;
+  float: left;
+}
+
+.gallery_main h2 {
+  font-size: 20px;
+  float: left;
+  width: 100%;
+  text-align: left;
+  padding: 20px 17px;
+}
+
+.photos {
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #ccc;
+  padding: 0 0 20px 0;
+}
+
+.photos h2 {
+  font-size: 20px;
+  float: left;
+  width: 100%;
+  text-align: left;
+  padding: 7px 0px;
+  margin: 0;
+}
+
+.gallery_main_all {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery_card {
+  color: #000;
+  border-radius: 2px;
+  padding: 2px;
+  background: #6ec5c3;
+}
+
+.card-image {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-top: 70%;
+  background: #000;
+}
+
+.card-image img {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.direction {
+  width: 100%;
+  float: left;
+}
+
+.direction h2 {
+  font-size: 20px;
+  float: left;
+  width: 100%;
+  text-align: left;
+  padding: 0 0px;
+}
+
+.direction_main {
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.direction_main iframe {
+  width: 100%;
+  float: left;
+}
+
+.d_all {
+  width: 100%;
+  float: left;
+  padding: 10px;
+}
+
+.grey-another {
+  color: #616161;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.padding-20 {
+  padding: 7px;
+}
+
+.grey-another {
+  color: #616161;
+}
+
+.get_dir,
+.map_container {
+  border: 1px solid #ccc;
+}
+
+.feature_main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 12px 0px;
+  width: 100%;
+}
+
+.align-v-center {
+  align-items: center;
+}
+
+span {
+  font-size: 14px;
+  color: #000;
+  padding: 5px 0 0 0;
+}
+
+.ico-xs {
+  height: 25px;
+  width: 25px;
+  padding: 0 6px 0 0;
+}
+
+.ico>svg {
+  width: 100%;
+  height: 100%;
+}
+
+.restaurant_fa h2 {
+  font-size: 20px;
+  float: left;
+  width: 100%;
+  text-align: left;
+  padding: 7px 0px;
+}
+
+.restaurant_fa {
+  width: 100%;
+  float: left;
+}
+
+.restaurant_contact {
+  text-align: left;
+  float: left;
+  padding: 0 10px 0;
+}

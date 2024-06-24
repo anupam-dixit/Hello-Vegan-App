@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-title class="title" style="color:#fff;">My Subscription</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png"
+                                                                style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section>
+    <h2 class="ion-text-center">{{subscription?.subscription.title}} Membership</h2>
+    <div class="row">
+      <div class="col ion-text-center">
+        <img class="img-fluid" [src]="subscription?.subscription.icon">
+      </div>
+    </div>
+    <div class="row mt-3" *ngIf="subscription?.purchase?.status">
+      <div class="col">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4" class="border-right">Purchased On</ion-col>
+            <ion-col>{{subscription?.purchase?.created_at}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" class="border-right">Expiring On</ion-col>
+            <ion-col class="text-warning">{{subscription?.purchase?.expire_at}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" class="border-right">Price</ion-col>
+            <ion-col class="text-warning"><span class="badge badge-primary">{{subscription?.purchase?.amount_paid}} </span> <ion-icon *ngIf="subscription?.purchase?.status=='paid'" name="checkmark-circle-outline" class="text-success"></ion-icon></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" class="border-right">Payment ID</ion-col>
+            <ion-col>{{subscription?.purchase?.payment_id}}  </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">Limits</div>
+          <div class="card-body">
+            <ul>
+              <li><strong>Blogs : </strong>{{subscription?.subscription?.data.blog}} <span class="badge badge-{{(parseInt(subscription?.subscription?.data.blog)>parseInt(subscription?.usage?.blog))?'secondary':'danger'}}">{{subscription?.usage?.blog}} Posted</span> </li>
+              <li><strong>Posts : </strong>{{subscription?.subscription?.data.post}} <span class="badge badge-{{(parseInt(subscription?.subscription?.data.post)>parseInt(subscription?.usage?.post))?'secondary':'danger'}}">{{subscription?.usage?.post}} Posted</span></li>
+              <li><strong>Recipe : </strong>{{subscription?.subscription?.data.recipe}} <span class="badge badge-{{(parseInt(subscription?.subscription?.data.recipe)>parseInt(subscription?.usage?.recipe))?'secondary':'danger'}}">{{subscription?.usage?.recipe}} Posted</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" *ngFor="let s of allSubscriptions">
+        <a [href]="Env.BasePoint+'subscription/purchase/'+s.id+'/'+myLib.auth.get().id">
+          <div class="card mb-3" *ngIf="parseInt(s.price)>parseInt(subscription?.subscription?.price)">
+            <div class="row">
+              <div class="col-3">
+                <img class="img-fluid p-2" [src]="s?.icon">
+              </div>
+              <div class="col-4">
+                <h5>{{s.title}}</h5>
+                <h5>{{s.price}}/ month.</h5>
+              </div>
+              <div class="col-5">
+                <ul>
+                  <li><strong>Blogs : </strong>{{JSON.parse(s.data)?.blog}}</li>
+                  <li><strong>Posts : </strong>{{JSON.parse(s.data)?.post}}</li>
+                  <li><strong>Recipe : </strong>{{JSON.parse(s.data)?.recipe}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</ion-content>

@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" style="color:#fff;">
+      <ion-back-button slot="start" style="color:#fff;">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="title" style="color:#fff;">Profile Edit</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png"
+          style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="from_page">
+    <div class="questions_all">
+      <div class="questions_one">
+        <form (ngSubmit)="f.form.valid && EditProfile()" #f="ngForm">
+          <div class="profile_editbox">
+            <div class="form-group a">
+              <label for="name">First Name</label>
+              <ion-input id="name" type="text" placeholder="First Name" name="name" [(ngModel)]="form.name"
+                #name="ngModel" class="form_control_event" required></ion-input>
+            </div>
+            <label class="text-danger" *ngIf="(f.submitted && name.invalid)">Enter First Name</label>
+            <div class="form-group b">
+              <label for="first-name">Last Name</label>
+              <ion-input id="last_name" type="text" placeholder="Last Name" name="last_name"
+                [(ngModel)]="form.last_name" #last_name="ngModel" class="form_control_event" required></ion-input>
+            </div>
+            <label class="text-danger" *ngIf="(f.submitted && last_name.invalid)">Enter Last Name</label>
+            <div class="form-group email-group">
+              <label for="email">Email</label>
+              <ion-input id="email" type="text" placeholder="Email" name="email" [(ngModel)]="form.email"
+                #email="ngModel" class="form_control_event" readonly></ion-input>
+            </div>
+            <label class="text-danger" *ngIf="(f.submitted && email.invalid)">Enter Email</label>
+            <div class="form-group phone-group">
+              <label for="phone">Mobile</label>
+              <ion-input id="mobile_no" type="text" placeholder="Mobile" name="mobile_no" [(ngModel)]="form.mobile_no"
+                #mobile_no="ngModel" class="form_control_event" required></ion-input>
+            </div>
+            <label class="text-danger" *ngIf="(f.submitted && mobile_no.invalid)">Enter Mobile no</label>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <ion-input id="address" type="text" placeholder="Address" name="address" [(ngModel)]="form.address"
+                #address="ngModel" class="form_control_event" required></ion-input>
+            </div>
+            <label class="text-danger" *ngIf="(f.submitted && address.invalid)">Enter Address</label>
+            <div class="form-group">
+              <label for="Country">Country</label>
+              <ion-input type="text" placeholder="Country" id="country" name="country" [(ngModel)]="form.country"
+                #country="ngModel" class="form_control_event" required></ion-input>
+            </div>
+            <label class="text-danger" *ngIf="(f.submitted && country.invalid)">Enter Country</label>
+            <div class="form-group">
+              <label for="State">State</label>
+              <ion-input id="State" type="text" placeholder="State" name="state" [(ngModel)]="form.state"
+                #state="ngModel" class="form_control_event" required></ion-input>
+            </div>
+            <label class="text-danger" *ngIf="(f.submitted && state.invalid)">Enter State</label>
+            <div class="form-group">
+              <label for="city">City</label>
+              <ion-input id="city" type="text" placeholder="City" name="city" [(ngModel)]="form.city" #city="ngModel"
+                class="form_control_event" required></ion-input>
+            </div>
+            <label class="text-danger" *ngIf="(f.submitted && city.invalid)">Enter City</label>
+            <div class="form-group">
+              <label for="Postal">Code Postal</label>
+              <ion-input id="pin_code" type="text" placeholder="Code Postal" name="pin_code" [(ngModel)]="form.pin_code"
+                #pin_code="ngModel" class="form_control_event" required></ion-input>
+            </div>
+            <label class="text-danger" *ngIf="(f.submitted && pin_code.invalid)">Enter Code Postal</label>
+            <div class="form-group">
+              <label for="birth">Date of birth</label>
+              <ion-input type="date" id="date_of_birth" name="date_of_birth" [(ngModel)]="form.date_of_birth" #date_of_birth="ngModel"
+                class="form_control_event" required></ion-input>
+            </div>
+            <label class="text-danger" *ngIf="(f.submitted && date_of_birth.invalid)">Enter Date of birth</label>
+            <div class="form-group ">
+              <label for="Profile">Profile Pictures</label>
+              <input id="Profile" type="file" name="profile_image">
+            </div>
+            <div class="form-group">
+              <label for="Pictures">Background Pictures</label>
+              <input id="Pictures" type="file" name="cover_image">
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <ion-textarea id="description" type="text" name="description" [(ngModel)]="form.description"
+                #description="ngModel" class="textarea_event" placeholder="Description" required></ion-textarea>
+            </div>
+            <label class="text-danger" *ngIf="(f.submitted && description.invalid)">Enter Description</label>
+            <div class="form-group">
+              <button type="submit" class="contact_submit">Submit Profile</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>

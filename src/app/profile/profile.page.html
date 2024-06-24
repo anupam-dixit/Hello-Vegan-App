@@ -1,0 +1,258 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start">
+        <ion-icon name="menu" style=" color:#fff;font-size: 30px;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" style="color:#fff;">Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png"
+          style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <section class="top-bar">
+    <div class="top-bar__title">
+      <h1 class="top-bar__title__text"> </h1>
+    </div>
+    <button class="top-bar__menu-btn"><i class="material-icons"> </i></button>
+  </section>
+  <section class="stats">
+    <div class="stats__img-holder">
+      <img
+        [src]="profileData?.users_details.profile_image ? environment.liveDomain+profileData?.users_details.profile_image : environment.liveDomain+'public/frontend/images/f_icon_user.jpg'">
+    </div>
+    <div class="stats__data">
+      <div class="stats__data__point" [routerLink]="['/menu/friendslist', profileData?.users_details?.id]">
+          <div class="stats__data__point__value">{{profileData?.userfriend?.length}}</div>
+          <div class="stats__data__point__description"> Friends</div>
+      </div>
+      <div class="stats__data__point" routerLink="/menu/friendrequests">
+        <div class="stats__data__point__value">{{profileData?.users_details?.total_friend_request_received}}</div>
+        <div class="stats__data__point__description">Friend Requests </div>
+      </div>
+      <div class="stats__data__point">
+        <!-- <div class="stats__data__point__value">225</div> -->
+        <!-- <div class="stats__data__point__description">Following</div> -->
+      </div>
+    </div>
+  </section>
+  <section class="description">
+    <h2 class="decription__title">
+      {{profileData?.users_details.name}} {{profileData?.users_details.last_name}}
+    </h2>
+    <p>{{profileData?.users_details.address}} {{profileData?.users_details.city}}, {{profileData?.users_details.state}},
+      {{profileData?.users_details.country}} </p>
+  </section>
+  <section class="actions">
+    <button class="actions__btn actions__btn--active" routerLink="/menu/share-your-thoughts"> Add Post </button>
+    <button class="actions__btn" [routerLink]="['/chat-list']" style="color: #000;">Message</button>
+    <button class="actions__btn" [routerLink]="['/profile-edit']">
+      <ion-icon name="create" style="color: #000;"></ion-icon>
+    </button>
+  </section>
+  <section>
+    <div class="row" *ngIf="subscription?.subscription">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            Your Subscription
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2">
+                <img class="img-fluid" [src]="subscription?.subscription.icon">
+              </div>
+              <div class="col">
+                <h5>{{subscription?.subscription.title}} Plan</h5>
+                <div class="" *ngIf="subscription?.purchase?.status">
+                  <h5>Expiry <span class="badge badge-warning">
+                    {{subscription?.purchase.expire_at}}
+                  </span>
+                  </h5>
+                </div>
+                <div class="text-right">
+                  <button class="actions__btn actions__btn--active" [routerLink]="['/my-subscription']">Details</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="stories">
+    <div *ngFor="let data of profileData?.userfriend" [routerLink]="['/menu/public-profile',data?.id]"
+      class="stories__single">
+      <div class="stories__single__img-holder">
+        <div class="stories__single__img-holder__inner">
+          <img src="{{environment.liveDomain+data.profile_image}}">
+        </div>
+      </div>
+      <p class="stories__single__description">{{data.name | titlecase}}</p>
+    </div>
+  </section>
+  <section class="tabs">
+    <ion-segment mode="md"[scrollable]="true" value={{segmentValue}} (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="posts">
+        <div class="cslideinner" style="overflow: hidden;height: 15px;">
+          <div class="blogmenu_text">
+            <h2>Posts</h2>
+          </div>
+        </div>
+      </ion-segment-button>
+      <ion-segment-button value="events">
+        <div class="cslideinner" style="overflow: hidden;height: 15px;">
+          <div class="blogmenu_text">
+            <h2>Events</h2>
+          </div>
+        </div>
+      </ion-segment-button>
+      <ion-segment-button value="recipes">
+        <div class="cslideinner" style="overflow: hidden;height: 15px;">
+          <div class="blogmenu_text">
+            <h2>Recipes</h2>
+          </div>
+        </div>
+      </ion-segment-button>
+      <ion-segment-button value="blog">
+        <div class="cslideinner" style="overflow: hidden;height: 15px;">
+          <div class="blogmenu_text">
+            <h2>Blog</h2>
+          </div>
+        </div>
+      </ion-segment-button>
+      <ion-segment-button value="photos">
+        <div class="cslideinner" style="overflow: hidden;height: 15px;">
+          <div class="blogmenu_text">
+            <h2>Photos</h2>
+          </div>
+        </div>
+      </ion-segment-button>
+    </ion-segment>
+  </section>
+  <section class="grid">
+    <div class="post_rightside">
+      <div *ngIf="segmentValue == 'posts'">
+        <div class="one_bx" *ngFor="let data of posts?.Postall_profile">
+          <div class="topbar_post" [routerLink]="['/dashboard-details',data?.id]">
+            <div class="topbar_icon">
+              <img src="{{environment.liveDomain+ profileData?.users_details.profile_image}}">
+            </div>
+            <h2>{{profileData?.users_details.name}}</h2>
+            <p>{{data.created_at | date:'dd MMM yyyy'}},{{data.updated_at | date:'dd MMM'}}</p>
+          </div>
+          <p [routerLink]="['/dashboard-details',data?.id]" innerHtml="{{data.content}}"></p>
+          <div *ngIf="data.image" class="post_images "> <img
+              src="{{environment.liveDomain+ data.image}}"> </div>
+          <div class="like_comments post_one_pdding">
+            <div class="like_comments_f" style="display:flex;align-items: center;">
+              <div *ngIf="data?.likestatus === '1'">
+                <div class="reactions" (click)="likePost(0, data?.id)">
+                  <ion-icon style="margin-top: 5px;" name="heart"></ion-icon>
+                </div>
+              </div>
+              <div *ngIf="data?.likestatus === '0'">
+                <div (click)="likePost(1, data?.id)">
+                  <ion-icon style="margin-top: 5px;" name="heart"></ion-icon>
+                </div>
+              </div>
+              <a>
+                <span> {{data.total_like}} Like </span>
+              </a>
+            </div>
+            <!-- <p class="like_comments_f"><a>{{data.total_like}}<ion-icon name="thumbs-up"></ion-icon> </a></p> -->
+            <p class="like_comments_se" (click)="handleComments(data.id,hideShowState)">
+              <a>{{data.total_comment}}<ion-icon name="chatbubbles"></ion-icon> </a></p>
+          </div>
+          <!-- <div class="comment_post">
+            <button (click)="handleComments(data.id,hideShowState)">
+              <h2 class="show_comment">
+                {{(hideShowId == data.id && hideShowState == 'show') ? 'Hide Comments': 'Show Comments'}}
+              </h2>
+            </button>
+          </div> -->
+          <div *ngIf="hideShowId == data.id && hideShowState == 'show'">
+            <div class="comment_post" *ngFor="let comment of comments">
+              <div class="commentcomment_post ">
+                <div class="comment_icon"><img
+                    [src]="comment?.users_profile_image ? environment.liveDomain+comment?.users_profile_image : environment.liveDomain+'public/frontend/images/f_icon_user.jpg'">
+                </div>
+                <h2>{{comment.users_name}} </h2>
+                <p>{{comment.message}} </p>
+              </div>
+            </div>
+            <div class="comments_form post_one_pdding">
+              <input class="effect-1" (change)="addComment($event)" type="text" placeholder="Write here. . . . . .">
+              <span class="focus-border" (click)="postComment(data.id)">
+                <ion-icon name="send"></ion-icon>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="segmentValue == 'events'">
+        <div class="one_bx " *ngFor="let data of events?.events">
+          <div class="topbar_post ">
+            <div class="topbar_icon">
+              <img
+                [src]="data.users_profile_image ? environment.liveDomain+data.users_profile_image : environment.liveDomain+'public/frontend/images/f_icon_user.jpg'">
+            </div>
+            <h2>{{data.user_name}}</h2>
+            <p>{{data.created_at | date:'MMM dd, yyyy'}}, {{data.updated_at | date:'MMM dd'}}</p>
+          </div>
+          <p [routerLink]="['/events-details',data.id]" class="post_one_pdding">{{data?.title}}</p>
+          <div [routerLink]="['/events-details',data.id]" class="post_images "> <img src="{{environment.liveDomain+ data.image}}"> </div>
+          <!-- <div class="like_comments post_one_pdding">
+            <p class="like_comments_f"><a>{{data?.posted_by}} <ion-icon name="thumbs-up"></ion-icon> </a></p>
+            <p class="like_comments_se"><a>{{data?.total_comment}}<ion-icon name="chatbubbles"></ion-icon> </a>
+            </p>
+          </div> -->
+        </div>
+      </div>
+      <div *ngIf="segmentValue == 'recipes'">
+        <div class="one_bx " *ngFor="let data of recipes?.receipes">
+          <div class="topbar_post ">
+            <div class="topbar_icon">
+              <img
+                [src]="data.users_profile_image ? environment.liveDomain+data.users_profile_image : environment.liveDomain+'public/frontend/images/f_icon_user.jpg'">
+            </div>
+            <h2>{{data.user_name}}</h2>
+            <p>{{data.created_at | date:'MMM dd, yyyy'}}, {{data.updated_at | date:'MMM dd'}}</p>
+          </div>
+          <p [routerLink]="['/recipes-details',data.id]" class="post_one_pdding">{{data?.title}}</p>
+          <div [routerLink]="['/recipes-details',data.id]" class="post_images "> <img src="{{environment.liveDomain+ data.image}}"> </div>
+        </div>
+      </div>
+      <div *ngIf="segmentValue == 'blog'">
+        <div class="one_bx " *ngFor="let data of blogs?.blogall_profile">
+          <div class="topbar_post ">
+            <div class="topbar_icon">
+              <img
+                [src]="data.users_profile_image ? environment.liveDomain+data.users_profile_image : environment.liveDomain+'public/frontend/images/f_icon_user.jpg'">
+            </div>
+            <h2>{{data.user_name}}</h2>
+            <p>{{data.created_at | date:'MMM dd, yyyy'}}, {{data.updated_at | date:'MMM dd'}}</p>
+          </div>
+          <p [routerLink]="['/blog-details',data.id]" class="post_one_pdding">{{data?.title}}</p>
+          <div [routerLink]="['/blog-details',data.id]" class="post_images "> <img src="{{environment.liveDomain+ data.image}}"> </div>
+        </div>
+      </div>
+      <div class="photo_profile">
+        <div *ngIf="segmentValue == 'photos'">
+
+          <div class="one_bx " *ngFor="let data of photos?.photos">
+            <div class="post_images "> <img src="{{environment.liveDomain+ data}}"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ion-content>

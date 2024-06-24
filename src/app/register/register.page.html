@@ -1,0 +1,52 @@
+<ion-content style=" background: #70cac8;--ion-background: #70cac8;">
+  <div class="myClass">
+    <div class="loginpage">
+      <img src="/assets/images/register_bg.png" style="--ion-background: #70cac8;">
+      <div class="login_bg">
+        <!-- <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+      </ion-toolbar> -->
+        <div class="left_side">
+          <ion-back-button defaultHref="/login" text="Back"></ion-back-button>
+          <h2>Register</h2>
+        </div>
+        <div class="logo_login"> <img src="/assets/images/logo.png"> </div>
+        <div class="login_form">
+          <form (ngSubmit)="f.form.valid && signup(f)" #f="ngForm">
+            <ion-list style="padding-bottom: 0px;padding-top: 0; background: none;margin:6px 0 0;">
+              <ion-label [ngClass]="f.submitted && name.invalid ? 'labelerror' : ''"> First Name</ion-label>
+              <ion-input [ngClass]="f.submitted && name.invalid ? 'inputerror' : ''" [(ngModel)]="form.name" required #name="ngModel" name="name" type="text" placeholder="First Name"></ion-input>
+              <ion-label [ngClass]="f.submitted && name.invalid ? 'labelerror' : ''"> Last Name</ion-label>
+              <ion-input [ngClass]="f.submitted && name.invalid ? 'inputerror' : ''" [(ngModel)]="form.last_name" required #last_name="ngModel" name="last_name" type="text" placeholder="Last Name"></ion-input>
+              <ion-label [ngClass]="f.submitted && email.invalid ? 'labelerror' : ''"> Email ID</ion-label>
+              <ion-input [ngClass]="f.submitted && email.invalid ? 'inputerror' : ''" [(ngModel)]="form.email" required #email="ngModel" name="email" type="text" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z](?:[a-zA-Z]{0,61}[a-zA-Z])+\.[a-zA-Z](?:[a-zA-Z]{0,61}[a-zA-Z])*$"></ion-input>
+              <div class="mobile_number">
+                <ion-label [ngClass]="f.submitted && mobile_no.invalid ? 'labelerror' : ''"> Mobile Number</ion-label>
+                <div class="mobile_number_code">
+                  <ion-select interface="popover" placeholder="Code" [(ngModel)]="form.countrycode" required #countrycode="ngModel" name="countrycode">
+                    <ion-select-option value="{{data.phonecode}}" *ngFor="let data of countryCodeList?.countries"> +{{data.phonecode}} {{data.nicename}}</ion-select-option>
+                  </ion-select>
+                </div>
+                <div class="mobile_number_text">
+                  <ion-input [ngClass]="f.submitted && mobile_no.invalid ? 'inputerror' : ''" [(ngModel)]="form.mobile_no" required #mobile_no="ngModel" name="mobile_no" maxlength="10" pattern="[0-9]{10}" type="tel" placeholder="Mobile no"></ion-input>
+                </div>
+              </div>
+              <ion-label [ngClass]="f.submitted && password.invalid ? 'labelerror' : ''"> Password </ion-label>
+              <ion-input [ngClass]="f.submitted && password.invalid ? 'inputerror' : ''" [(ngModel)]="form.password" required #password="ngModel" name="password" type="password" placeholder="Password "></ion-input>
+              <ion-label [ngClass]="f.submitted && confirm_password.invalid ? 'labelerror' : ''"> Retype
+                Password</ion-label>
+              <ion-input [ngClass]="f.submitted && confirm_password.invalid ? 'inputerror' : ''" [(ngModel)]="form.confirm_password" required #confirm_password="ngModel" name="confirm_password" type="password" placeholder="Retype Password"></ion-input>
+            </ion-list>
+            <div class="verify">
+              <button color="main" fill="outline" type="submit">Register with Your account</button>
+            </div>
+          </form>
+          <p routerLink="/login">Already have an account ? Login</p>
+          <h6>**Please insert authentic data, it will be sent to admin for approval</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

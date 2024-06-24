@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" style="color:#fff;">
+      <ion-back-button slot="start" style="color:#fff;">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Product Detail</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png" style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="blog_list">
+    <div class="news_page">
+      <div class="recipes_bx_page">
+        <div class="recipes_detailspage">
+          <div class="news_page">
+            <div class="hadding_main_details">{{productData?.product_details.title}}</div>
+            <div class="post_details_news_page">
+              <div class="tdb-block-inner td-fix-index">
+                <a class="tdb-author-photo" title="David Lee">
+                  <img src="{{Env.BasePoint+productData?.product_details?.users_profile_image}}">
+                </a>
+                <div class="tdb-author-name-wrap"><span class="tdb-author-by">By</span> <a class="tdb-author-name">{{productData?.product_details?.users_name}}</a></div>
+              </div>
+              <div class="tdb-block-inner td-fix-index">
+                <time class="entry-date updated td-module-date">{{productData?.product_details.created_at | date:'dd MMMM yyyy'}}</time>
+              </div>
+            </div>
+          </div>
+          <div class="tag_recipes">
+            <ul>
+              <h3> Tags :- </h3>
+              <li>Overview</li>
+              <li>Cook Time</li>
+              <li>Ingredients</li>
+            </ul>
+          </div>
+          <div class="recipes_details_images"> <img src="{{Env.BasePoint+productData?.product_details.image}}"> </div>
+          <div class="recipes_detail_category">
+            <ul>
+              <li> <span><img src="/assets/images/category_icon.png"></span>
+                <h2>Rating</h2>
+                <p>
+                  <ion-icon name="star-half-outline"></ion-icon> {{productData?.product_details.rating}}/5
+                </p>
+              </li>
+              <li> <span><img src="/assets/images/cooking_time.png"></span>
+                <h2>Country of Origin</h2>
+                <p>India</p>
+              </li>
+              <li> <span><img src="/assets/images/location_icon.png"></span>
+                <h2>Manufacturing By</h2>
+                <p>Manufacturing</p>
+              </li>
+            </ul>
+          </div>
+          <div class="video_recipes_details">
+            <h2>Details</h2>
+            <p [innerHtml]="productData?.product_details.content"></p>
+          </div>
+          <div class="event_date">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6">
+                  <h2>Details</h2>
+                  <h3>Phone Number:</h3>
+                  <p>{{productData?.product_details?.mobile_no}}</p>
+                  <h3>Email:</h3>
+                  <p>{{productData?.product_details?.users_email}}</p>
+                </ion-col>
+                <ion-col size="6">
+                  <h2> </h2>
+                  <h3> Website</h3>
+                  <p>{{productData?.product_details?.website_link}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="blog_comment">
+      <div class="detailBox">
+        <div class="titleBox">
+          <label>Comment </label>
+        </div>
+        <div class="actionBox">
+          <ul class="commentList" *ngFor="let data of comments?.product_comment">
+            <li>
+              <div class="commenterImage">
+                <img src="{{Env.BasePoint+data.users_profile_image}}" />
+              </div>
+              <div class="commentText">
+                <h2>{{data?.users_name}}</h2>
+                <p class="">{{data.message}}</p>
+                <span class="date sub-text">on {{data.created_date | date:'MMMM dd, yyyy'}}</span>
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline" role="form" (ngSubmit)="f.form.valid && addComment()" #f="ngForm">
+            <div class="form-group">
+              <h2>LEAVE A REPLY </h2>
+              <ion-textarea id="message" name="message" [(ngModel)]="form.message" #message="ngModel" class="form-control comment_here" placeholder="Enter your comment here..." required></ion-textarea>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="post_comment">Post Comment</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

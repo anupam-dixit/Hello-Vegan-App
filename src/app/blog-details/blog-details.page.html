@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" style="color:#fff;">
+      <ion-back-button slot="start" style="color:#fff;">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Blog</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png" style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="blog_details_page">
+    <div class="blogimages"> <img src="{{Env.BasePoint+blogData?.blog_details.image}}">
+      <div class="blog_titel_btm">
+        <h3>{{blogData?.blog_details.category_name}}</h3>
+        <h2>{{blogData?.blog_details.title}}</h2>
+        <div class="btm_user_and_date">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <div class="user_icon" [routerLink]="['/menu/public-profile',blogData?.blog_details?.posted_by]"> <img src="{{Env.BasePoint+blogData?.blog_details.user_profile}}" class="user-image" alt=""><span>By {{blogData?.blog_details.user_name}}</span> </div>
+              </ion-col>
+              <ion-col size="6">
+                <div class="blog_dateright">
+                  <img src="/assets/icon/dateca.png"><span>{{blogData?.blog_details.created_at | date:'MMM dd, yyyy'}}</span> </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+    </div>
+    <div class="blog_allcon">
+      <p innerHtml="{{blogData?.blog_details.content}}"></p>
+      <div class="row mt-3 mb-4">
+        <div class="col">
+          <form class="form-inline" role="form" (ngSubmit)="f.form.valid && addComment()" #f="ngForm">
+            <div class="form-group">
+              <h2>LEAVE A REPLY </h2>
+              <ion-textarea id="message" name="message" [(ngModel)]="form.message" #message="ngModel" class="form-control comment_here" placeholder="Enter your comment here..." required></ion-textarea>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="post_comment">Post Comment</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="blog_comment">
+        <div class="detailBox">
+          <div class="titleBox">
+            <label>Comment </label>
+            <!-- <button class="viewoldcommetns">View Old Commetns</button> -->
+          </div>
+          <div class="actionBox">
+            <ul class="commentList" *ngFor="let data of blogData?.comment">
+              <li>
+                <div class="commenterImage">
+                  <img src="{{Env.BasePoint+ data?.users_profile_image}}" /> </div>
+                <div class="commentText">
+                  <h2><a [routerLink]="['/menu/public-profile',data?.commented_by]">{{data?.users_name}}</a></h2>
+                  <p class="">{{data?.message}}</p>
+                  <span class="date sub-text">on {{data?.created_at}}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

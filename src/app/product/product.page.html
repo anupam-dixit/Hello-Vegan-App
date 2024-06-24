@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" style="color:#fff;">
+      <ion-back-button slot="start" style="color:#fff;">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Product</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png" style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="product_page">
+    <ion-grid style="padding: 0;">
+      <ion-row>
+        <ion-col *ngFor="let data of productData?.productall" size="6" style="padding-left: 0;" [routerLink]="['/product-details',data?.id]">
+          <div class="product_pageone">
+            <div class="product_page_img"><img src="{{Env.BasePoint+data.image}}"> </div>
+            <h2>{{data.title}}</h2>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

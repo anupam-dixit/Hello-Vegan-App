@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-back-button style="color:#fff;">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="search-box-wrapper">
+    <ion-input type="search" class="search-box" id="livese" debounce="500" (keyup)="getSearchContent($event)" placeholder="Search Hello Vegans"></ion-input>
+    <span class="icon-search" aria-label="hidden"> <img src="{{Env.BasePoint}}public/frontend/images/search_icon.png"></span>
+  </div>
+  <div id="livesearch">
+    <div class="search_iteam_all">
+      <div class="search_iteam_title" *ngIf="searchData?.Peoples"> Peoples </div>
+      <div *ngIf="searchData?.Peoples">
+        <div class="search_iteam_one" *ngFor="let data of searchData?.Peoples">
+          <a [routerLink]="['/menu/public-profile',data.id]">
+            <span>
+              <img [src]="data.imgurl">
+            </span>
+            <p>{{data.name}}</p>
+          </a>
+        </div>
+      </div>
+      <div class="search_iteam_title" *ngIf="searchData?.Blogs"> Blogs </div>
+      <div *ngIf="searchData?.Blogs">
+        <div class="search_iteam_one" *ngFor="let data of searchData?.Blogs">
+          <a [routerLink]="['/blog-details',data.id]">
+            <span>
+              <img [src]="data.imgurl">
+            </span>
+            <p>{{data.name}}</p>
+          </a>
+        </div>
+      </div>
+      <div class="search_iteam_title" *ngIf="searchData?.News"> News </div>
+      <div *ngIf="searchData?.News">
+        <div class="search_iteam_one" *ngFor="let data of searchData?.News">
+          <a [routerLink]="['menu/news-details',data.id]">
+            <span>
+              <img [src]="data.imgurl">
+            </span>
+            <p>{{data.name}}</p>
+          </a>
+        </div>
+      </div>
+      <div class="search_iteam_title" *ngIf="searchData?.Events"> Events </div>
+      <div *ngIf="searchData?.Events">
+        <div class="search_iteam_one" *ngFor="let data of searchData?.Events">
+          <a [routerLink]="['/menu/events-details',data.id]">
+            <span>
+              <img [src]="data.imgurl">
+            </span>
+            <p>{{data.name}}</p>
+          </a>
+        </div>
+      </div>
+      <div class="search_iteam_title" *ngIf="searchData?.Cooks"> Cooks </div>
+      <div *ngIf="searchData?.Cooks">
+        <div class="search_iteam_one" *ngFor="let data of searchData?.Cooks">
+          <a [routerLink]="['/cook-profile',data.id]">
+            <span>
+              <img [src]="data.imgurl">
+            </span>
+            <p>{{data.name}}</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

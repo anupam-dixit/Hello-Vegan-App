@@ -1,0 +1,276 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+@import '~quill/dist/quill.snow.css';
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Tilt+Neon&display=swap');
+@import "color-pallette";
+.skiptranslate>iframe{
+  display: none;
+}
+#goog-gt-vt{
+  // google translate feedback card
+  display: none;
+}
+body{
+  font-family: 'Tilt Neon', sans-serif !important;
+}
+.toolbar-container {
+    background: var(--primary_medium);
+}
+
+ion-header {
+    background-color: var(--primary_medium);
+  --ion-background-color: var(--primary_medium);
+    color: #fff;
+    padding: 5px 0;
+
+  ion-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    /* letter-spacing: 1px; */
+    font-size: 14px;
+    padding: 0px;
+  }
+}
+
+.text-danger{
+  color: red;
+  /* margin-top: -10px; */
+  font-size: 12px !important;
+}
+
+.new-background-color {
+ --background: var(--primary_medium);
+    width: 100%;
+    float: left;
+}
+
+.toolbar-background {
+    border: none;
+}
+
+.header-ios ion-toolbar:last-of-type {
+ --border-width: 0;
+}
+
+span {
+    font-size: 14px;
+    padding: 5px 0 0 6px;
+}
+
+.setbegde {
+    background: #fff;
+    color: var(--primary_medium);
+    font-size: 11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 5px 0;
+    margin: -7px 0 0 -10px;
+}
+
+.fontcolor {
+    color: #767676;
+    font-size: 11px;
+ }
+
+.setbegde {
+  background-color: #fff;
+  font-size: 10px;
+  margin-left: -12px;
+  margin-top: -8px;
+  height: 18px;
+  width: 18px;
+  color: #101e41;
+  float: left;
+  text-align: center;
+  padding: 4px 0;
+}
+.form-control {
+    background: #fff;
+}
+
+.blog_comment {
+    width:100%;
+    float:left;
+}
+.blog_comment .titleBox {
+    background-color: #fff;
+    float: left;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px 10px 10px;
+    border-bottom: 1px solid #ccc;
+}
+.blog_comment .titleBox label {
+    color:#000;
+    margin:0;
+    display:inline-block;
+}.blog_comment span {
+    padding: 0px 0 0 1px !important;
+}
+.blog_comment .commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+.blog_comment .commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+.blog_comment .commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+ width:18%;
+}
+.blog_comment .actionBox .form-group * {
+    width:100%;
+}
+.blog_comment .taskDescription {
+    margin-top:10px 0;
+}
+.blog_comment .commentList {
+    list-style: none;
+    float: left;
+    width: 100%;
+    padding: 0 10px;
+}
+.blog_comment .form-group {
+    padding: 0 10px;
+}
+.blog_comment .commentList li {
+    margin: 0 0 10px;
+   float: left;
+  width: 100%;
+}
+.blog_comment .commentList li > div {
+    display:table-cell;
+}
+.blog_comment .commenterImage {
+    width:30px;
+    margin-right:5px;
+    height:30px;
+    float:left;
+}
+.blog_comment .commenterImage img {
+    width: 100%;
+    border-radius: 50%;
+    height: 100%;
+}
+.blog_comment .commentText p {
+    margin: 0;
+    text-transform: capitalize;
+}
+.commentText p {
+    font-size: 14px !important;
+    line-height: 15px !important;line-height: 18px !important;
+}
+.blog_comment .sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.blog_comment .actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px 0;
+}
+.commentText h2 {
+    font-size: 16px !important;
+    float: left;
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: normal;text-transform: capitalize;
+    width: 100%;
+}
+.form-group {
+    width: 100% !important;
+    float: left;
+}
+.blog_comment .actionBox .form-group * {
+    width: 100%;
+    padding: 10px;
+    margin-top: 0;margin-bottom: 10px;
+}
+.blog_comment .actionBox .form-group h2 {
+    width: 100%;
+    padding:10px 0 10px 0;
+    font-size: 16px;
+    margin-top: 0;text-transform: capitalize;
+    float: left;
+    text-align: left;
+    margin: 0;
+}
+.comment_here {
+    height: 80px !important;
+    float: left;
+    border-radius: 10px !important;
+}
+.blog_comment .titleBox {
+    background-color: #fff;
+    padding: 10px;
+    float: left;
+    width: 100%;
+}
+.post_comment {
+    background-color: #70cac8 !important;
+    box-shadow: 0 12px 15px #70cac829, 0 -4px 15px #70cac829;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 15px;
+    position: relative;
+    float: right;
+    width: auto !important;
+    text-align: right;
+    padding: 7px 20px !important;
+    margin: 0 0 10px;
+}.commentText p {
+    font-size: 12px;
+    padding: 3px 0 0 0;
+    margin: 0;
+    line-height: 16px;
+}
+.viewoldcommetns {
+    background-color: #70cac8;
+    box-shadow: 0 12px 15px #70cac829, 0 -4px 15px #70cac829;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 12px;
+    position: relative;
+    float: right;
+    width: auto !important;
+    text-align: right;
+    padding: 7px 10px !important;
+    margin: 0 0 10px;
+}
+.form-control.comment_here {
+    background: #fff;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.textarea-highlight{
+    display: none;
+}
+ion-select .native-wrapper{
+    width: 100% !important;
+}

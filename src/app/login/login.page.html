@@ -1,0 +1,43 @@
+<ion-content style="background: #70cac8;--ion-background: #70cac8;">
+  <div class="myClass">
+  <div class="loginpage">
+    <img src="/assets/images/img_001.jpeg">
+    <div class="login_bg">
+      <div class="left_side">
+        <h2>Log In</h2>
+      </div>
+      <div class="logo_login"> <img src="/assets/images/logo.png"> </div>
+      <div class="login_form">
+        <form  (ngSubmit)="f.form.valid && login()" #f="ngForm">
+          <ion-list style="padding-bottom: 0px;padding-top: 0; background: none;margin:6px ​0 0;">
+            <ion-label [ngClass]="f.submitted && email.invalid ? 'labelerror' : ''"> Email or phone number</ion-label>
+            <ion-input [ngClass]="f.submitted && email.invalid ? 'inputerror' : ''" [(ngModel)]="form.email" required #email="ngModel" name="email" type="text" placeholder="Email or phone number"></ion-input>
+            <ion-label [ngClass]="f.submitted && password.invalid ? 'labelerror' : ''"> Password</ion-label>
+            <ion-input [ngClass]="f.submitted && password.invalid ? 'inputerror' : ''" [(ngModel)]="form.password" required #password="ngModel" name="password" type="password" placeholder="Password"></ion-input>
+          </ion-list>
+          <div class="btm_login">
+            <ion-grid style="padding: 15px 15px 0;">
+              <ion-row>
+                <ion-col size="6" style="padding: 0;margin: 0;">
+                  <div class="text_bx">
+                    <!-- <h2>Remember Me</h2> -->
+                  </div>
+                </ion-col>
+                <ion-col size="6" style="padding: 0;margin: 0;">
+                  <div class="text_bx">
+                    <h2 routerLink="/forgotpassword" style="float: right;">Forgot Password?</h2>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+          <p routerLink="/register">Don’t have an account? Register Now</p>
+          <div class="verify">
+            <button class="btn btn-md" style="background: var(--secondary_medium)" type="submit" >Log in <i class="fa-duotone fa-right"></i></button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div></div>
+</ion-content>

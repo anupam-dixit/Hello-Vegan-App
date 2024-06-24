@@ -1,0 +1,47 @@
+# codemagic.yaml
+
+# Define the workflows
+workflows:
+  version: 1
+
+  # Build configuration for iOS
+  ios:
+    name: Build iOS
+    script:
+      - name: Install Dependencies
+        script: |
+          npm install
+          npm install -g ionic@latest
+          npm install -g cordova@latest
+
+      - name: Build iOS
+        script: |
+          ionic cordova prepare ios
+          ionic build --prod
+
+      - name: Archive iOS
+        script: |
+          ionic build ios --release
+          ionic capacitor copy ios
+
+      - name: Xcode Build
+        script: |
+          cd ios
+          xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -archivePath App.xcarchive archive
+
+  # Build configuration for Android
+  android:
+    name: Build Android
+    script:
+      - name: Install Dependencies
+        script: |
+          npm install
+          npm install -g ionic@latest
+          npm install -g cordova@latest
+
+      - name: Build Android
+        script: |
+          ionic cordova prepare android
+          ionic build --prod
+
+      - name: A

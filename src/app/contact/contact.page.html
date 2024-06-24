@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start">
+        <ion-icon name="menu" style=" color:#fff;font-size: 30px;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Contact Us</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png" style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="contact_page">
+    <form  (ngSubmit)="f.form.valid && contact(f)" #f="ngForm">
+      <ion-item lines="full">
+        <ion-label position="floating">Name</ion-label>
+        <ion-input [(ngModel)]="form.name" required #name="ngModel" name="name" type="text" required></ion-input>
+      </ion-item>
+      <label class="text-danger" *ngIf="(f.submitted && name.invalid)">Enter Name</label>
+      <ion-item lines="full">
+        <ion-label position="floating">Email ID</ion-label>
+        <ion-input [(ngModel)]="form.email" required #email="ngModel" name="email" type="email" required></ion-input>
+      </ion-item>
+      <label class="text-danger" *ngIf="(f.submitted && email.invalid)">Enter Email id</label>
+      <ion-item lines="full">
+        <ion-label position="floating">Mobile Number</ion-label>
+        <ion-input [(ngModel)]="form.mobile" required #mobile="ngModel" name="mobile" type="tel" required></ion-input>
+      </ion-item>
+      <label class="text-danger" *ngIf="(f.submitted && mobile.invalid)">Enter Mobile no</label>
+      <ion-item lines="full">
+        <ion-label position="floating">Country</ion-label>
+        <ion-select aria-label="Country" [(ngModel)]="form.country" required #country="ngModel" name="country" required>
+          <ion-select-option value="{{data.nicename}}" *ngFor="let data of countryData?.countries">{{data.nicename}}</ion-select-option>
+          <!-- <ion-select-option value="{{data.phonecode}}" *ngFor="let data of countryCodeList?.countries"> +{{data.phonecode}} {{data.nicename}}</ion-select-option> -->
+        </ion-select>
+        <!-- <ion-input [(ngModel)]="form.country" required #country="ngModel" name="country" type="tel" required></ion-input> -->
+      </ion-item>
+      <label class="text-danger" *ngIf="(f.submitted && country.invalid)">Enter Country</label>
+      <ion-item lines="full">
+        <ion-label position="floating">Massages</ion-label>
+        <ion-textarea [(ngModel)]="form.message" required #message="ngModel" name="message" placeholder="Massages"></ion-textarea>
+      </ion-item>
+      <label class="text-danger" *ngIf="(f.submitted && message.invalid)">Enter your Message</label>
+      <ion-row>
+        <ion-col>
+          <button type="submit" class="contact_submit">Submit</button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+  <div class="map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d86506.04841051323!2d8.717682000000002!3d47.347267!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x479aa4a6077615b5%3A0x26a443cd74dca38a!2sHello%20Vegan%20%7C%20Ladengesch%C3%A4ft%20und%20Onlineshop%2C%20Zentralstrasse%2018%2C%208610%20Uster%2C%20Switzerland!3m2!1d47.3472551!2d8.717711399999999!4m5!1s0x479aa4a6077615b5%3A0x26a443cd74dca38a!2sHello%20Vegan%20%7C%20Ladengesch%C3%A4ft%20und%20Onlineshop%2C%20Zentralstrasse%2018%2C%208610%20Uster%2C%20Switzerland!3m2!1d47.3472551!2d8.717711399999999!5e0!3m2!1sen!2sin!4v1665643985469!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</ion-content>

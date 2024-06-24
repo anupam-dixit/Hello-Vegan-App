@@ -1,0 +1,108 @@
+iframe.goog-te-banner-frame{ display: none !important;}
+body {position: static !important; top:0px !important;}
+.goog-logo-link {display:none !important;}
+.goog-te-gadget{color: transparent !important;}
+.goog-te-banner-frame {
+  top: initial;
+  bottom: 0;
+}
+.sidmenu_user {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: var(--primary_medium);
+    opacity: 0.9;
+    padding: 11px;
+}
+
+
+.header-md::after {
+ 	height: 9px;
+}
+
+
+.user_icon {
+	width: 100%;
+	float: left;
+}
+.user_icon img {
+	width: 78px;
+	height: 78px;
+	border-radius: 50%;
+	border: 3px solid #fff;
+}
+.user_name {
+	width: 100%;
+	float: left;
+	margin: 8% 0 0;
+}
+.user_name h2 {
+	color: #fff;
+	font-size: 15px;
+	margin: 0;
+	padding: 0;text-transform: capitalize;
+	font-weight: bold;
+}
+.user_name p {
+	color: #fff;
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+}
+
+.submenu {
+ --ion-background-color:#ffdae8;
+	color: #042946 !important;
+
+}
+// .logout_bx_main{position: relative;}
+.logout_bx {
+	background-color: var(--ion-color-main);
+	// position: absolute;
+	color: #fff;
+	// bottom: 0; right: 0; left: 0;
+	width: 100%;
+}
+.logout_bx ul {
+	margin: 0;
+	padding: 0;
+}
+.logout_bx ul li {
+	margin: 0;
+	padding: 10px;
+	font-size: 16px;
+	color: var(ion-color-main-contrast);
+	width: 50%;
+	display: inline-block;
+}
+.logout_bx ul li span {
+}
+.logout_bx ul li span img {
+	width: 18px;
+	line-height: normal;
+	padding: 0;
+	vertical-align: middle;
+}
+ion-list {
+	ion-item {
+		font-size: 15px;
+		float: left;
+		width: 100%;
+		color: #4b4b4b;font-family: 'Roboto';
+		--padding-start:0px;
+			span {
+				padding: 2px 9px 0 16px;
+				img {
+						width: 22px;
+					}
+			}
+ 		 }
+	 }
+.submenu {
+	--ion-background-color: #ffdae8;
+	color: #042946 !important;
+	--padding-start: 0 !important;
+	span {
+		padding:2px 9px 0 38px !important}
+}

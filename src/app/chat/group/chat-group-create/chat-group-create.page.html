@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-back-button slot="start"  style="color:#fff;">
+    </ion-back-button>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;margin-left: 10px;">
+      Create ChatGroup
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content #content>
+  <div class="row">
+    <div class="col p-4">
+      <ion-input [(ngModel)]="groupName" type="text" placeholder="Enter here" label="Group Name"></ion-input>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <ion-item *ngFor="let u of allUsers">
+        <ion-label>{{ u?.name }}</ion-label>
+        <ion-checkbox #sel (ionChange)="selectMember(u,sel.checked)" color="dark"></ion-checkbox>
+      </ion-item>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col p-4 ion-text-right">
+      <ion-button (click)="submit()" color="primary">Submit</ion-button>
+    </div>
+  </div>
+</ion-content>

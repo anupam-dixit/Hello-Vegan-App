@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-back-button slot="start" style="color:#fff;">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="title" style="color:#fff;">Add Blog</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png" style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">10</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form (ngSubmit)="f.form.valid && AddBlog()" #f="ngForm">
+    <div class="form">
+      <div class="form-group">
+        <label>Title</label>
+        <ion-input type="text" id="title" [(ngModel)]="form.title" #title="ngModel" name="title" class="form_control_event" placeholder="Title" required></ion-input>
+        <label class="text-danger" *ngIf="(!f.submitted && !title.untouched && title.invalid) || (f.submitted && title.invalid)">Enter Title</label>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <ion-select expand="full" placeholder="Select Category" class="form_control_event form-select form-select-lg " interface="popover" [(ngModel)]="form.post_category_id" #post_category_id="ngModel" name="post_category_id" required>
+          <ion-select-option value="2">Moose</ion-select-option>
+          <ion-select-option value="1">Salad</ion-select-option>
+          <ion-select-option value="0">Others</ion-select-option>
+        </ion-select>
+        <label class="text-danger" *ngIf="(!f.submitted && !post_category_id.untouched && post_category_id.invalid) || (f.submitted && post_category_id.invalid)">Enter Category</label>
+      </div>
+      <div class="form-group">
+        <label>Tags</label>
+        <ion-input type="text" id="tags" name="tags" [(ngModel)]="form.tags" #tags="ngModel" class="form_control_event" placeholder="Tags" required></ion-input>
+        <label class="text-danger" *ngIf="(!f.submitted && !tags.untouched && tags.invalid) || (f.submitted && tags.invalid)">Enter Tags</label>
+      </div>
+      <div class="form-group">
+        <label>Location</label>
+        <ion-input type="text" id="location" name="location" [(ngModel)]="form.location" #location="ngModel" class="form_control_event pac-target-input" placeholder="Location" required></ion-input>
+        <label class="text-danger" *ngIf="(!f.submitted && !location.untouched && location.invalid) || (f.submitted && location.invalid)">Enter Location</label>
+      </div>
+      <div class="form-group">
+        <label>Image</label><br>
+        <img (click)="chooseImage()" class="image" *ngIf="form.image" src="{{form.image}}">
+        <ion-badge *ngIf="form.image" (click)="form.image = null">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-badge>
+        <button *ngIf="!form.image" class="choose_image" (click)="chooseImage()">Choose Image</button>
+      </div>
+      <div class="form-group">
+        <label>Add Gallery Image</label><br>
+        <div *ngFor="let data of form.galleryimage;let i = index">
+          <img class="image" src="{{data}}">
+          <ion-badge (click)="removeImage(i)">
+            <ion-icon name="close-circle-outline"></ion-icon>
+          </ion-badge>
+        </div>
+        <button class="choose_image" (click)="chooseMultiImage()">Choose Image</button>
+      </div>
+      <div class="form-group">
+        <label>Video</label><br>
+        <video (click)="chooseVideo()" class="image" *ngIf="form.videofile" src="{{form.videofile}}"></video>
+        <ion-badge *ngIf="form.videofile" (click)="form.videofile = null">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-badge>
+        <button (click)="chooseVideo()" *ngIf="!form.videofile" class="choose_image">Choose Video</button>
+      </div>
+      <div class="form-group">
+        <label>Details</label>
+      </div>
+      <div class="form-group">
+        <quill-editor [required]="true" name="detail" [(ngModel)]="form.detail" #detail="ngModel" data=""></quill-editor>
+        <label class="text-danger" *ngIf="(!f.submitted && !detail.untouched && detail.invalid) || (f.submitted && detail.invalid)">Enter Detail</label>
+      </div>
+      <div class="save_changes">
+        <button type="submit">Save Changes</button>
+      </div>
+    </div>
+  </form>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "Hello Vegans",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

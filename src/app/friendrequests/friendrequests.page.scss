@@ -1,0 +1,76 @@
+.friend_requests_page {
+  width: 100%;
+  float: left;
+}
+
+.friend_requests_page ul {
+  margin: 0;
+  padding: 0;
+}
+
+.friend_requests_page ul li {
+  display: block;
+  cursor: pointer;
+  float: left;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width: 47.2%;
+  text-align: center;
+  border-radius: 5px;
+  padding: 0;
+  background: #fff;
+  margin: 5px 5px;
+  padding: 0 0 4px 0;
+}
+
+.friend_requests_page ul li img {
+  height: 170px;
+  width: 100%;
+  background-size: cover;
+  background-position: top;
+  object-fit: cover;
+  border-radius: 3px;
+  object-position: center top;
+}
+
+.friend_requests_page ul li h3 {
+  font-size: 14px;
+  padding: 5px 0 0;
+  text-align: center;
+  margin: 0;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: normal;
+  text-transform: capitalize;
+  display: -webkit-box;
+}
+
+.friend_requests_page ul li span {
+  color: #6f6f6f;
+  font-size: 12px;
+  display: block;
+  padding: 0 0 5px;
+}
+
+.freand_type a {
+  margin: 0;
+  padding: 6px 10px;
+  display: block;
+  cursor: pointer;
+  background: #70cac8;
+  width: 47%;
+  text-align: center;
+  border-radius: 3px;
+  margin: 6px auto;
+  text-decoration: none;
+  color: #fff;
+  float: left;
+  font-size: 14px;
+  margin: 0 2px;
+}
+
+.freand_type a.delete_friends {
+  color: #000 !important;
+  background: #e4e6eb !important;
+}

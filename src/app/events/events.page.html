@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <ion-icon name="menu" style=" color:#fff;font-size: 30px;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Events</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png" style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="event_page">
+    <div class="myblog">
+      <div class="titel_all">
+        <h2>Upcoming Events </h2>
+        <div class="aad_post_button" routerLink="/add-event">
+          Add Event
+        </div>
+      </div>
+      <div class="blog_home">
+        <div class="cslide">
+          <div [routerLink]="['/events-details',data.id]" *ngFor="let data of eventData?.upcoming_events" class="cslideinner" style="overflow: hidden;height: 188px;"> <img src="{{environment.liveDomain+data.image}}">
+            <div class="myblog_text">
+              <h2>{{data.name}}</h2>
+              <p innerHtml="{{data.details}}" style=" margin: 0;"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="blog_menu">
+    <div class="menublog_home">
+      <div class="cslide">
+        <ion-segment mode="md"[scrollable]="true" value="{{eventData?.event_category[0]?.name}}" (ionChange)="segmentChanged($event)">
+          <ion-segment-button value="{{data?.name}}" *ngFor="let data of eventData?.event_category">
+            <div class="cslideinner" style="overflow: hidden;height: 34px;">
+              <div class="blogmenu_text">
+                <h2>{{data?.name}}</h2>
+              </div>
+            </div>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+    </div>
+  </div>
+  <div class="">
+    <div class="myrecommendation_blog">
+      <div class="news_home">
+        <div class="cslide">
+          <div class="cslideinner newbg" *ngFor="let data of activeData" style="overflow: hidden;height: 210px;" [routerLink]="['/events-details',data.id]">
+            <img src="{{environment.liveDomain+data.image}}">
+            <div class="myrecommendation_blog_text">
+              <h2>{{data?.name}}</h2>
+              <p>{{data?.user_name}} {{data?.event_start_date | date:'dd MMM yyyy'}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-back-button slot="start" style="color:#fff;">
+    </ion-back-button>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="row ion-align-items-center">
+    <div class="col-8">
+      <ion-searchbar mode="ios" (ionChange)="search($event)" (debounce)="200" placeholder="Search by name"></ion-searchbar>
+    </div>
+    <div class="col">
+      <ion-button shape="round" routerLink="/chat-group-create">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+  <div class="chat_list">
+    <div class="user_one" [routerLink]="['/chating/0',data.group_id]" [queryParams]="{prop: convert(data)}" *ngFor="let data of groupChatDataSearch;">
+      <div class="user_iocn"> <img src="data:image/png;base64,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" alt="icon"></div>
+      <div class="user_name">
+        <h2>{{data.group_name}}</h2>
+      </div>
+    </div>
+    <div class="user_one" [routerLink]="['/chating',data.id,0]" [queryParams]="{prop: convert(data)}" *ngFor="let data of chatDataSearch;">
+      <div class="user_iocn"> <img [src]="data.profile_image?Env.BasePoint+data.profile_image:Env.BasePoint+'public/frontend/images/f_icon_user.jpg'" alt="icon"><span class="active"></span> </div>
+      <div class="user_name">
+        <h2>{{data.name}}</h2>
+      </div>
+    </div>
+  </div>
+</ion-content>

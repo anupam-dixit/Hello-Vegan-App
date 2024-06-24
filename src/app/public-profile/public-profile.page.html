@@ -1,0 +1,280 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start">
+        <ion-icon name="menu" style=" color:#fff;font-size: 30px;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Public Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png"
+          style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <section class="top-bar">
+    <div class="top-bar__title">
+      <h1 class="top-bar__title__text"> </h1>
+    </div>
+    <button class="top-bar__menu-btn"><i class="material-icons"> </i></button>
+  </section>
+  <section class="stats">
+    <div class="stats__img-holder">
+      <img
+        [src]="profileData?.users_details?.profile_image ? Env.BasePoint+profileData?.users_details?.profile_image : Env.BasePoint+'public/frontend/images/f_icon_user.jpg'" />
+    </div>
+    <div class="stats__data">
+      <div class="stats__data__point" [routerLink]="['/menu/friendslist', profileData?.users_details?.id]">
+        <div class="stats__data__point__value">{{profileData?.userfriend.length}}</div>
+        <div class="stats__data__point__description"> Friends</div>
+      </div>
+      <div class="stats__data__point">
+        <!-- <div class="stats__data__point__value">317 M</div> -->
+        <!-- <div class="stats__data__point__description">Followers</div> -->
+      </div>
+      <div class="stats__data__point">
+        <!-- <div class="stats__data__point__value">225</div> -->
+        <!-- <div class="stats__data__point__description">Following</div> -->
+      </div>
+    </div>
+  </section>
+  <section class="description">
+    <h2 class="decription__title">
+      {{profileData?.users_details?.name}} {{profileData?.users_details?.last_name}}
+    </h2>
+    <p>{{profileData?.users_details?.address}} {{profileData?.users_details?.city}}
+      {{profileData?.users_details?.state}}
+      {{profileData?.users_details?.country}} </p>
+  </section>
+  <section class="actions">
+    <div style="display: flex;justify-content: space-between;" *ngIf="profileData?.users_details?.friend_status === 0">
+      <button *ngIf="profileData?.users_details?.friend_request_sent_status === 0" class="actions__btn actions__btn--active"
+        (click)="sendFriendReq(profileData?.users_details?.id)">
+        Add Friend </button>
+      <!-- <button *ngIf="profileData?.users_details?.friend_request_sent === 1" class="actions__btn actions__btn--active"
+        (click)="sendFriendReq(profileData?.users_details?.id)">
+        Accept Request </button>
+ -->
+      <button *ngIf="profileData?.users_details?.friend_request_sent_status === 1" class="actions__btn actions__btn--active"
+        (click)="friendRequestCancel(profileData?.users_details?.id)">
+        Cancel Request</button>
+    </div>
+    <div style="display: flex;justify-content: space-between;" *ngIf="profileData?.users_details?.friend_status === 1">
+      <button class="actions__btn actions__btn--active" [routerLink]="['/chating',profileData?.users_details?.id,0]"
+        [queryParams]="{prop: convert(profileData?.users_details)}">Message</button>
+      <button class="actions__btn actions__btn--active" (click)="unfriend(profileData?.users_details?.id)">Unfriend</button>
+    </div>
+    <!-- <button class="actions__btn"><ion-icon name="create"></ion-icon></button> -->
+  </section>
+  <!-- <section class="stories">
+    <div class="stories__single">
+      <div class="stories__single__img-holder">
+        <div class="stories__single__img-holder__inner" style="background-image: url('/assets/images/Friends_list1.jpg');"></div>
+      </div>
+      <p class="stories__single__description">Name</p>
+    </div>
+    <div class="stories__single">
+      <div class="stories__single__img-holder">
+        <div class="stories__single__img-holder__inner" style="background-image: url('/assets/images/Friends_list2.jpg');"></div>
+      </div>
+      <p class="stories__single__description">Name</p>
+    </div>
+    <div class="stories__single">
+      <div class="stories__single__img-holder">
+        <div class="stories__single__img-holder__inner" style="background-image: url('/assets/images/Friends_list3.jpg');"></div>
+      </div>
+      <p class="stories__single__description">Name</p>
+    </div>
+    <div class="stories__single">
+      <div class="stories__single__img-holder">
+        <div class="stories__single__img-holder__inner" style="background-image: url('/assets/images/Friends_list4.jpg');"></div>
+      </div>
+      <p class="stories__single__description">Name</p>
+    </div>
+    <div class="stories__single">
+      <div class="stories__single__img-holder">
+        <div class="stories__single__img-holder__inner" style="background-image: url('/assets/images/Friends_list5.jpg');"></div>
+      </div>
+      <p class="stories__single__description">Name</p>
+    </div>
+    <div class="stories__single">
+      <div class="stories__single__img-holder">
+        <div class="stories__single__img-holder__inner" style="background-image: url('/assets/images/Friends_list6.jpg');"></div>
+      </div>
+      <p class="stories__single__description">Name</p>
+    </div>
+    <div class="stories__single">
+      <div class="stories__single__img-holder">
+        <div class="stories__single__img-holder__inner" style="background-image: url('/assets/images/Friends_list7.jpg');"></div>
+      </div>
+      <p class="stories__single__description">Name</p>
+    </div>
+    <div class="stories__single">
+      <div class="stories__single__img-holder">
+        <div class="stories__single__img-holder__inner" style="background-image: url('/assets/images/Friends_list8.jpg');"></div>
+      </div>
+      <p class="stories__single__description">Name</p>
+    </div>
+  </section> -->
+  <section>
+    <ion-segment mode="md"[scrollable]="true" [(ngModel)]="segmentValue" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="posts">
+        <div class="cslideinner" style="overflow: hidden;height: 15px;">
+          <div class="blogmenu_text">
+            <h2>Post</h2>
+          </div>
+        </div>
+      </ion-segment-button>
+      <ion-segment-button value="events">
+        <div class="cslideinner" style="overflow: hidden;height: 15px;">
+          <div class="blogmenu_text">
+            <h2>Events</h2>
+          </div>
+        </div>
+      </ion-segment-button>
+      <ion-segment-button value="recipes">
+        <div class="cslideinner" style="overflow: hidden;height: 15px;">
+          <div class="blogmenu_text">
+            <h2>Recipes</h2>
+          </div>
+        </div>
+      </ion-segment-button>
+      <ion-segment-button value="blog">
+        <div class="cslideinner" style="overflow: hidden;height: 15px;">
+          <div class="blogmenu_text">
+            <h2>Blog</h2>
+          </div>
+        </div>
+      </ion-segment-button>
+      <ion-segment-button value="photos">
+        <div class="cslideinner" style="overflow: hidden;height: 15px;">
+          <div class="blogmenu_text">
+            <h2>Photos</h2>
+          </div>
+        </div>
+      </ion-segment-button>
+    </ion-segment>
+    <!-- <button class="tabs__btn tabs__btn--active">Post </button>
+    <button class="tabs__btn"> Events</button>
+    <button class="tabs__btn"> Recipes </button>
+    <button class="tabs__btn"> Blog</button> -->
+  </section>
+  <section class="grid">
+    <div class="post_rightside">
+      <div *ngIf="segmentValue == 'posts'">
+        <div class="one_bx " *ngFor="let data of posts?.Postall_profile">
+          <div class="topbar_post ">
+            <div class="topbar_icon">
+              <img
+                [src]="data.user_image ? Env.BasePoint+data.user_image : Env.BasePoint+'public/frontend/images/f_icon_user.jpg'">
+            </div>
+            <h2>{{data.user_name}} {{data.last_name}}</h2>
+            <p>{{data.updated_at | date:'MMM dd'}}</p>
+          </div>
+          <p class="post_one_pdding" innerHtml="{{data.content}}"></p>
+          <div class="post_images " *ngIf="data.post_image"> <img
+              src="{{Env.BasePoint+data.post_image}}"> </div>
+          <div class="like_comments post_one_pdding">
+            <div class="like_comments_f" style="display:flex;align-items: center;">
+              <div *ngIf="data?.likestatus === '1'">
+                <div class="reactions" (click)="likePost(0, data?.id)">
+                  <ion-icon style="margin-top: 5px;" name="heart"></ion-icon>
+                </div>
+              </div>
+              <div *ngIf="data?.likestatus === '0'">
+                <div (click)="likePost(1, data?.id)">
+                  <ion-icon style="margin-top: 5px;" name="heart"></ion-icon>
+                </div>
+              </div>
+              <a>
+                <span> {{data.total_like}} Like </span>
+              </a>
+            </div>
+            <p (click)="handleComments(data.id,hideShowState)" class="like_comments_se">
+              <a>{{data.total_comment}}<ion-icon name="chatbubbles"></ion-icon> </a>
+            </p>
+          </div>
+          <!-- <div class="comment_post">
+          <button>
+            <h2 class="show_comment">
+              {{(hideShowId == data.id && hideShowState == 'show') ? 'Hide Comments': 'Show Comments'}}
+            </h2>
+          </button>
+        </div> -->
+          <div *ngIf="hideShowId == data.id && hideShowState == 'show'">
+            <div class="comment_post" *ngFor="let comment of comments">
+              <div class="commentcomment_post ">
+                <div class="comment_icon"><img
+                    [src]="comment?.users_profile_image ? Env.BasePoint+comment?.users_profile_image : Env.BasePoint+'public/frontend/images/f_icon_user.jpg'">
+                </div>
+                <h2>{{comment.users_name}} </h2>
+                <p>{{comment.message}} </p>
+              </div>
+            </div>
+            <div class="comments_form post_one_pdding">
+              <input class="effect-1" (change)="addComment($event)" type="text" placeholder="Write here. . . . . .">
+              <span class="focus-border" (click)="postComment(data.id)">
+                <ion-icon name="send"></ion-icon>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="segmentValue == 'events'">
+        <div class="one_bx " *ngFor="let data of posts?.events">
+          <div class="topbar_post ">
+            <div class="topbar_icon">
+              <img
+                [src]="data.users_profile_image ? Env.BasePoint+data.users_profile_image : Env.BasePoint+'public/frontend/images/f_icon_user.jpg'">
+            </div>
+            <h2>{{data.user_name}}</h2>
+            <p>{{data.updated_at | date:'MMM dd'}}</p>
+          </div>
+          <p class="post_one_pdding">{{data?.title}}</p>
+          <div class="post_images "> <img src="{{Env.BasePoint+data.image}}"> </div>
+        </div>
+      </div>
+      <div *ngIf="segmentValue == 'recipes'">
+        <div class="one_bx " *ngFor="let data of posts?.receipes">
+          <div class="topbar_post ">
+            <div class="topbar_icon">
+              <img
+                [src]="data.users_profile_image ? Env.BasePoint+data.users_profile_image : Env.BasePoint+'public/frontend/images/f_icon_user.jpg'">
+            </div>
+            <h2>{{data.user_name}}</h2>
+            <p>{{data.updated_at | date:'MMM dd'}}</p>
+          </div>
+          <p class="post_one_pdding">{{data?.title}}</p>
+          <div class="post_images "> <img src="{{Env.BasePoint+data.image}}"> </div>
+        </div>
+      </div>
+      <div *ngIf="segmentValue == 'blog'">
+        <div class="one_bx " *ngFor="let data of posts?.blogall_profile">
+          <div class="topbar_post ">
+            <div class="topbar_icon">
+              <img
+                [src]="data.users_profile_image ? Env.BasePoint+data.users_profile_image : Env.BasePoint+'public/frontend/images/f_icon_user.jpg'">
+            </div>
+            <h2>{{data.user_name}}</h2>
+            <p>{{data.updated_at | date:'MMM dd'}}</p>
+          </div>
+          <p class="post_one_pdding">{{data?.title}}</p>
+          <div class="post_images "> <img src="{{Env.BasePoint+data.image}}"> </div>
+        </div>
+      </div>
+      <div class="photo_profile">
+        <div *ngIf="segmentValue == 'photos'">
+          <div class="one_bx " *ngFor="let data of photos?.photos">
+            <div class="post_images "> <img src="{{Env.BasePoint+data}}"> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ion-content>

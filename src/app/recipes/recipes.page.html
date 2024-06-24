@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start">
+        <ion-icon name="menu" style=" color:#fff;font-size: 30px;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Recipes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png" style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="blog_list">
+    <div class="titel_all">
+      <h2>Recipes </h2>
+      <div class="aad_post_button" routerLink="/add-recipe">
+        Add Recipes
+      </div>
+    </div>
+    <div *ngFor="let data of recipeData?.receipes" class="one_tab">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="5" [routerLink]="['/recipes-details',data.id]">
+            <div class="one_bximg">
+              <img src="{{data.image?environment.liveDomain+ data.image:Env.no_img}}" />
+            </div>
+          </ion-col>
+          <ion-col size="7">
+            <div class="user_icon">
+              <div class="icon_userimages" [routerLink]="['/menu/public-profile',data.user_id]">
+                <img [src]="data.users_profile_image ? environment.liveDomain+ data.users_profile_image : environment.liveDomain+'public/frontend/images/f_icon_user.jpg'" />
+                <h3>By {{data.user_name}}</h3>
+              </div>
+            </div>
+            <div [routerLink]="['/recipes-details',data.id]" class="one_bxright">
+              <div class="embed-content-text">
+                <p>Category - {{data.category_name}} <span>
+                    <ion-icon name="timer-outline"></ion-icon> {{data.cooking_time}} Min
+                  </span></p>
+                <h2>{{data.title}}</h2>
+                <p class="embed-content-paragraph">Street Food Recipes </p>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

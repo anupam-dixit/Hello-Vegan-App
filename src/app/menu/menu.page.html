@@ -1,0 +1,68 @@
+<ion-split-pane contentId="main-content">
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-menu-toggle style="outline: 0;">
+        <div class="sidmenu_bg">
+          <div><img style="height: 115px;width: 100%;" src="{{environment.liveDomain+userData?.cover_image}}"></div>
+          <div class="sidmenu_user">
+            <ion-grid style="padding: 6px 0 0;">
+                <ion-row [routerLink]="['/menu/profile',userData.id]">
+                  <ion-col size='4' style="display: flex;">
+                    <div class="user_icon"><img src="{{environment.liveDomain+userData?.profile_image}}"></div>
+                  </ion-col>
+                  <ion-col size='8'>
+                    <div class="user_name">
+                      <p>Welcome</p>
+                      <h2>{{userData.name}} {{userData.last_name}}</h2>
+                    </div>
+                  </ion-col>
+                </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+      </ion-menu-toggle>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-menu-toggle style="outline: 0;">
+        <ion-list>
+          <ion-item routerLink="/menu/dashboard">Vegan log</ion-item>
+          <ion-item routerLink="/menu/blog">Blog</ion-item>
+          <ion-item routerLink="/menu/news">News</ion-item>
+          <ion-item routerLink="/menu/events">Event</ion-item>
+          <ion-item routerLink="/menu/recipes">Recipe</ion-item>
+          <ion-item routerLink="/menu/recommendation">Recommendation</ion-item>
+          <ion-item routerLink="/menu/contact">Contact Us</ion-item>
+          <ion-item routerLink="/menu/cookies">Cookies</ion-item>
+          <ion-item routerLink="/menu/advertising">Advertising</ion-item>
+          <ion-item routerLink="/menu/privacy">Privacy</ion-item>
+          <ion-item (click)="logout()">Logout</ion-item>
+          <ion-item routerLink="/menu/about">About Us</ion-item>
+          <ion-item (click)="launchModal()">
+            <img height="30" width="30" class="img-fluid mr-3" src="https://cdn-icons-png.flaticon.com/128/2014/2014826.png"> Language
+<!--            <div id="google_translate_element"></div>-->
+          </ion-item>
+        </ion-list>
+      </ion-menu-toggle>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane>
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select Lanaguage</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="google_translate_element"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

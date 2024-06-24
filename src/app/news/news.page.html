@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <ion-icon name="menu" style=" color:#fff;font-size: 30px;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">News</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png" style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="newspage">
+    <div class="main_post">
+      <div [routerLink]="['/news-details',newsData?.news_latest.id]" class="onepost"><img src="{{environment.liveDomain+newsData?.news_latest.image}}">
+        <div class="text_onepost">
+          <!-- {{newsData?.news_latest.user_name}}  -->
+          <h6>{{newsData?.news_latest.category_name}}  |  {{newsData?.news_latest.created_at | date:'MMM dd, yyyy'}} </h6>
+          <h2>{{newsData?.news_latest.title}}</h2>
+          <p class="embed-content-paragraph" innerHtml="{{newsData?.news_latest?.content}}"></p>
+        </div>
+      </div>
+     </div>
+    <div class="blog_menu">
+      <div class="menublog_home">
+        <div class="cslide">
+          <ion-segment mode="md"[scrollable]="true" value="{{newsData?.news_category[0].name}}" (ionChange)="segmentChanged($event)" >
+            <ion-segment-button value="{{data?.name}}" *ngFor="let data of newsData?.news_category">
+              <div class="cslideinner" style="overflow: hidden;height: 34px;">
+                <div class="blogmenu_text">
+                  <h2>{{data?.name}}</h2>
+                </div>
+              </div>
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+      </div>
+    </div>
+    <div class="blog_list">
+      <div [routerLink]="['/news-details',data.id]" class="one_tab" *ngFor="let data of activeData">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="5">
+              <div class="one_bximg"> <img src="{{environment.liveDomain+data.image}}"> </div>
+            </ion-col>
+            <ion-col size="7">
+              <div class="one_bxright">
+                 <div class="embed-content-text">
+                   <h2>{{data.title}}</h2>
+                  <h3 class="embed-content-paragraph"><ion-icon name="calendar-outline"></ion-icon> {{data.created_at | date:'MMM dd, yyyy'}}</h3>
+                  <p class="embed-content-paragraph" innerHtml="{{data?.content}}"></p>
+                </div>
+
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+
+        <div class="carousel-inner">
+          <ng-container *ngFor="let data of activeData;index as i;first as isFirst">
+            <div class="carousel-item {{(i===0)?'active':''}} rounded-lg">
+              <img src="{{environment.liveDomain+data.image}}" class="d-block w-100 rounded" style="height: 300px;object-fit:cover" alt="...">
+              <div class="carousel-caption d-md-block">
+                <h5>{{data.title}}</h5>
+                <p class="text-truncate" innerHtml="{{data?.content}}"></p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <button class="carousel-control-prev" type="button" data-target="#caroupacselExampleCaptions" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ion-content>

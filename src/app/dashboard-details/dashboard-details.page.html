@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-back-button slot="start" style="color:#fff;">
+      </ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title class="title" style="color:#fff;">Dashboard</ion-title> -->
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png"
+          style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="blog_list">
+    <div class="news_page">
+      <div class="recipes_bx_page">
+        <div class="recipes_detailspage">
+          <div class="news_page">
+            <div class="hadding_main_details">{{dashboardData?.vaganpost_details.title}}</div>
+            <div class="post_details_news_page">
+              <div class="tdb-block-inner td-fix-index"> <a class="tdb-author-photo" href="/menu/public-profile/{{dashboardData?.vaganpost_details.posted_by}}" title="David Lee"><img
+                    src="{{environment.liveDomain+ dashboardData?.vaganpost_details.user_profile}}">
+                </a>
+                <div class="tdb-author-name-wrap"><span class="tdb-author-by">By</span> <a class="tdb-author-name"
+                    href="/menu/public-profile/{{dashboardData?.vaganpost_details.posted_by}}">{{dashboardData?.vaganpost_details.user_name}}</a></div>
+              </div>
+              <div class="tdb-block-inner td-fix-index">
+                <time class="entry-date updated td-module-date">{{dashboardData?.vaganpost_details?.created_at |
+                  date:'MMM dd, yyyy'}}</time>
+              </div>
+            </div>
+          </div>
+          <div class="recipes_details_images" *ngIf="dashboardData?.vaganpost_details?.image"> <img
+              src="{{environment.liveDomain+ dashboardData?.vaganpost_details?.image}}"> </div>
+          <p [innerHtml]="dashboardData?.vaganpost_details.content"></p>
+        </div>
+      </div>
+    </div>
+    <div class="blog_comment">
+      <div class="detailBox">
+        <div class="titleBox">
+          <label>Comment </label>
+          <!-- <button class="viewoldcommetns">View Old Commetns</button> -->
+        </div>
+        <div class="actionBox">
+          <ul class="commentList">
+            <li *ngFor="let data of dashboardData?.comment">
+              <div class="commenterImage" [routerLink]="['/menu/public-profile',data.commented_by]">
+                <img [src]="data?.users_profile_image?+environment.liveDomain+data?.users_profile_image:+environment.liveDomain+'public/frontend/images/f_icon_user.jpg'" />
+              </div>
+              <div class="commentText">
+                <h2 [routerLink]="['/menu/public-profile',data.commented_by]">{{data?.users_name}}</h2>
+                <p class="">{{data?.message}}</p>
+                <span class="date sub-text">on {{data?.created_at | date:'MMM dd, yyyy'}}</span>
+              </div>
+            </li>
+          </ul>
+          <form >
+            <div class="form-group">
+              <h2>LEAVE A REPLY </h2>
+              <ion-textarea class="form-control comment_here"
+              placeholder="Enter your comment here..." (ionChange)="enterComment($event)"></ion-textarea>
+            </div>
+            <div class="form-group">
+              <button [disabled]="!comment" class="post_comment" (click)="addComment()">Post Comment</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-back-button style="color:#fff;"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Cook Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png" style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="page-wrapper ">
+    <div class="cook_opupprofile">
+      <div class="cook_img"><img class="avatar img-responsive" alt="admin_profile" [src]="cookData?.cooks?.image ?  environment.liveDomain+cookData?.cooks?.image : environment.liveDomain+'public/frontend/images/f_icon_user.jpg'">
+      </div>
+      <h2>{{cookData?.cooks?.name}}</h2>
+      <p>{{cookData?.cooks?.address}} </p>
+    </div>
+    <div class="product_detail_category">
+      <ul>
+        <li> <span><img src="{{environment.liveDomain}}public/frontend/images/rating.png"></span>
+          <h2>Rating</h2>
+          <p>
+            <ion-icon name="star-half-outline"></ion-icon> {{cookData?.cooks?.rating}}
+          </p>
+        </li>
+        <li> <span><img src="{{environment.liveDomain}}public/frontend/images/experience.png"></span>
+          <h2>Experience</h2>
+          <p> {{cookData?.cooks?.experience}} Years</p>
+        </li>
+        <li> <span><img src="{{environment.liveDomain}}public/frontend/images/specialization.png"></span>
+          <h2>Specialization</h2>
+          <p>{{cookData?.cooks?.specialization}}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="cook_opupabout">
+      <h2>About Us</h2>
+      <p>{{cookData?.cooks?.content}}. . .</p>
+    </div>
+    <div class="event_date">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <h2>Details</h2>
+            <h3>Phone Number:</h3>
+            <p>{{cookData?.cooks?.phone}}</p>
+            <h3>Email:</h3>
+            <p>{{cookData?.cooks?.email}}</p>
+          </ion-col>
+          <ion-col size="6">
+            <h2> </h2>
+            <h3> Website</h3>
+            <p>{{cookData?.cooks?.website}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" class="new-background-color">
+      <ion-back-button style="color:#fff;">
+      </ion-back-button>
+      <ion-title class="title" slot="start" size="small" style="color:#fff;">Notifications</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="notifications_page">
+    <ul>
+      <li class="main-feed-item" *ngFor="let data of notificationData">
+        <div class="notifications_list">
+          <div class="icon_notifications"><img src="{{Env.BasePoint+data.profile_image}}">
+            <div class="icon_noti"> <img src="{{Env.BasePoint+data.notification_pageicon}}"> </div>
+          </div>
+          <div class="text_notifications">
+            <p> <b>{{data.name}}</b> {{data.message}}</p>
+            <span>{{data.timeview}}</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</ion-content>

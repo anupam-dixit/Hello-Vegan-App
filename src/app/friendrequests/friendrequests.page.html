@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start">
+        <ion-icon name="menu" style=" color:#fff;font-size: 30px;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" style="color:#fff;">Requests</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png"
+          style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="post_rightside">
+    <div class="friend_requests_page">
+      <ul>
+        <li *ngFor="let data of requestlist?.friend_request_received_by_me">
+          <a [routerLink]="['/menu/public-profile',data?.id]">
+            <img
+              [src]="data.profile_image ? Env.BasePoint+ data.profile_image : Env.BasePoint+'public/frontend/images/f_icon_user.jpg'">
+            <h3> {{data.name}} </h3>
+          </a>
+          <span>{{data.mutual_friend_count}} mutual friend</span>
+          <div class="freand_type">
+            <a (click)="friendReqestSend(data.id)">Confirm</a>
+            <a (click)="friendRequestDelete(data.id)" class="delete_friends">Delete</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ion-content>

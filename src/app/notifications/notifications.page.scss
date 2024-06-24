@@ -1,0 +1,81 @@
+.notifications_page {
+  width: 100%;
+  float: left;
+}
+
+
+
+.notifications_list {
+  background: #fff;
+  padding: 5px 10px;
+  border-radius: 7px;
+  box-shadow: 0 1px 2px #0003;
+  cursor: pointer;
+}
+
+.icon_notifications {
+  width: 61px;
+  float: left;
+  padding: 15px 2px 0;
+}
+
+.icon_notifications img {
+  width: 35px;
+  border-radius: 50px;
+  height: 35px;
+  float: left;
+  text-align: left;
+  margin: auto;
+}
+
+.notifications_page ul {
+  margin: 0;
+  padding: 0;
+}
+
+.notifications_page ul li {
+  width: 100%;
+  float: left;
+  display: inline-block;
+}
+
+.text_notifications {
+  width: 84%;
+  float: left;
+  padding: 12px 0 0;
+  margin: auto;
+}
+
+.text_notifications span {
+  color: #ABABAB;
+  font-size: 13px;
+  float: left;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.text_notifications p {
+  color: #000;
+  font-size: 13px;
+  float: left;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  line-height: 19px;
+}
+
+.icon_noti {
+  width: 100%;
+  float: left;
+}
+
+.icon_noti img {
+  width: 18px;
+  float: right;
+  height: 18px;
+  margin-top: -22px;
+  margin-right: 9px;
+  background: #70cac8;
+  padding: 3px;
+}

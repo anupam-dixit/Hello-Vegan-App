@@ -1,0 +1,47 @@
+.chat_list {
+  width: 100%;
+  float: left;
+}
+
+.user_one {
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+
+.user_iocn {
+  width: 50px;
+  height: 39px;
+  float: left;
+  position: relative;
+}
+
+.user_iocn img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.user_name {
+  float: left;
+}
+
+.user_name h2 {
+  float: left;
+  font-size: 16px;
+  padding: 9px 0 0;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.active {
+  background: #07b141;
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  position: absolute;
+  right: 7px;
+  left: auto;
+  bottom: 8px;
+}

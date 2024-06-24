@@ -1,0 +1,201 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button slot="start">
+        <ion-icon name="menu" style=" color:#fff;font-size: 30px;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" style="color:#fff;">Vegan log</ion-title>
+    <ion-buttons slot="end">
+
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png"
+          style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="allData($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="home_page">
+    <div class="vegan_log_home addli">
+      <h2>Vegan log</h2>
+
+      <div class="user_icon_home" [routerLink]="['/menu/profile',userData['id']]">
+        <img
+          [src]="userData['profile_image'] ? environment.liveDomain+userData['profile_image'] : environment.liveDomain+'public/frontend/images/f_icon_user.jpg'">
+      </div>
+      <button class=" share_your_thoughts" routerLink="/menu/share-your-thoughts">Share Your Thoughts</button>
+    </div>
+    <div class="one_tab" *ngFor="let data of dashboardData?.vaganpost | slice:0:3">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <div class="one_bxright">
+              <div class="common-post-header u-flex">
+                <img [src]="data['user_image'] ? environment.liveDomain+ data['user_image'] : environment.liveDomain+'public/frontend/images/f_icon_user.jpg'"
+                  class="user-image" alt="" width="40" height="40">
+                <div class="common-post-info" [routerLink]="['/menu/public-profile',data['user_id']]">
+                  <div class="user-and-group u-flex">{{data['user_name']}}</div>
+                  <div class="user_time">{{data['updated_at'] | date:'dd MMM yyyy'}}</div>
+                </div>
+              </div>
+              <div class="embed-content-text" [routerLink]="['/dashboard-details',data['id']]">
+                <p class="embed-content-paragraph" innerHtml="{{data['content']}}"></p>
+              </div>
+              <div class="one_bximg" *ngIf="data['image']" [routerLink]="['/dashboard-details',data['id']]"> <img
+                  src="{{environment.liveDomain+data['image']}}"> </div>
+              <div class="summary u-flex">
+                <div *ngIf="data['likestatus'] === '1'">
+                  <div class="reactions" (click)="likePost(0, data['id'])">
+                    <ion-icon name="heart"></ion-icon>
+                  </div>
+                </div>
+                <div *ngIf="data['likestatus'] === '0'">
+                  <div (click)="likePost(1, data['id'])">
+                    <ion-icon name="heart"></ion-icon>
+                  </div>
+                </div>
+                <a>
+                  <span> {{data['total_like']}} Like </span>
+                </a>
+                <a [routerLink]="['/dashboard-details',data['id']]" class="comment_count"> <span class="icon">
+                    <ion-icon name="chatbubble-outline"></ion-icon>
+                  </span> <span> {{data['total_comment']}} Comments </span></a>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="mynews">
+      <div class="titel_all">
+        <h2>News <span routerLink="/menu/news">See All</span></h2>
+      </div>
+      <div class="news_home">
+        <div class="cslide">
+          <div *ngFor="let data of dashboardData?.news | slice:0:3" class="cslideinner newbg"
+            [routerLink]="['/news-details',data['id']]" style="overflow: hidden;height: 152px;">
+            <img src="{{environment.liveDomain+data['image']}}">
+            <div class="mynews_text">
+              <h2>{{data['category_name']}}</h2>
+              <p>{{data['title']}}...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="one_tab" *ngFor="let data of dashboardData?.vaganpost | slice:3:8">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <div class="one_bxright">
+              <div class="common-post-header u-flex"> <img
+                  src="{{environment.liveDomain+data['user_image']}}" class="user-image" alt=""
+                  width="40" height="40">
+                <div class="common-post-info" [routerLink]="['/menu/public-profile',data['user_id']]">
+                  <div class="user-and-group u-flex">{{data['user_name']}}</div>
+                  <div class="user_time">{{data['updated_at'] | date:'dd MMM yyyy'}}</div>
+                </div>
+              </div>
+              <div class="embed-content-text" [routerLink]="['/dashboard-details',data['id']]">
+                <p class="embed-content-paragraph" innerHtml="{{data['content']}}"></p>
+              </div>
+              <div class="one_bximg" *ngIf="data['image']" [routerLink]="['/dashboard-details',data['id']]"> <img
+                  src="{{environment.liveDomain+data['image']}}"> </div>
+              <div class="summary u-flex">
+                <div *ngIf="data['likestatus'] === '1'">
+                  <div class="reactions" (click)="likePost(0, data['id'])">
+                    <ion-icon name="heart"></ion-icon>
+                  </div>
+                </div>
+                <div *ngIf="data['likestatus'] === '0'">
+                  <div (click)="likePost(1, data['id'])">
+                    <ion-icon name="heart"></ion-icon>
+                  </div>
+                </div>
+                <a>
+                  <span> {{data['total_like']}} Like </span>
+                </a>
+                <a [routerLink]="['/dashboard-details',data['id']]" class="comment_count">
+                  <span class="icon">
+                    <ion-icon name="chatbubble-outline"></ion-icon>
+                  </span>
+                  <span> {{data['total_comment']}} Comments </span>
+                </a>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+  <div class="home_page">
+    <div class="one_tab" *ngFor="let data of dashboardData?.vaganpost | slice:8:dashboardData?.vaganpost['length']+1">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <div class="one_bxright">
+              <div class="common-post-header u-flex"> <img
+                  src="{{environment.liveDomain+data['user_image']}}" class="user-image" alt=""
+                  width="40" height="40">
+                <div class="common-post-info" [routerLink]="['/menu/public-profile',data['user_id']]">
+                  <div class="user-and-group u-flex">{{data['user_name']}}</div>
+                  <div class="user_time">{{data['updated_at'] | date:'dd MMM yyyy'}}</div>
+                </div>
+              </div>
+              <div class="embed-content-text" [routerLink]="['/dashboard-details',data['id']]">
+                <p class="embed-content-paragraph" innerHtml="{{data['content']}}"></p>
+              </div>
+              <div class="one_bximg" *ngIf="data['image']" [routerLink]="['/dashboard-details',data['id']]">
+                <img src="{{environment.liveDomain+data['image']}}">
+              </div>
+              <div class="summary u-flex">
+                <a>
+                  <div *ngIf="data['likestatus'] === '1'">
+                    <div class="reactions" (click)="likePost(0, data['id'])">
+                      <ion-icon name="heart"></ion-icon>
+                    </div>
+                  </div>
+                  <div *ngIf="data['likestatus'] === '0'">
+                    <div (click)="likePost(1, data['id'])">
+                      <ion-icon name="heart"></ion-icon>
+                    </div>
+                  </div>
+                  <span> {{data['total_like']}} Like </span>
+                </a>
+                <a [routerLink]="['/dashboard-details',data['id']]" class="comment_count"> <span class="icon">
+                    <ion-icon name="chatbubble-outline"></ion-icon>
+                  </span> <span> {{data['total_comment']}} Comments </span>
+                </a>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="myblog">
+      <div class="titel_all">
+        <h2>Blog <span routerLink="/menu/blog">See All</span></h2>
+      </div>
+      <div class="blog_home">
+        <div class="cslide">
+          <div *ngFor="let data of dashboardData?.blogs | slice:0:3">
+            <div class="cslideinner" style="overflow: hidden;height: 188px;" [routerLink]="['/blog-details',data['id']]">
+              <img src="{{environment.liveDomain+data['image']}}">
+              <div class="myblog_text">
+                <h2>{{data['title']}}</h2>
+                <p class="embed-content-paragraph" innerHtml="{{data['content']}}"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

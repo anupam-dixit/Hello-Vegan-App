@@ -1,0 +1,165 @@
+.blogimages {
+  width: 100%;
+  float: left;
+  position: relative;
+}
+
+.blogimages img {
+  width: 100%;
+  float: left;
+  height: 430px;
+  object-fit: cover;
+  background-position: center;
+  background-size: 100%;
+}
+
+.blog_text_andtitel {
+  position: relative;
+}
+
+.blog_images_topicon {
+  width: 100%;
+  float: left;
+  padding: 10px 0 0 0;
+}
+
+.blog_images_topicon img {
+  width: 13px;
+  float: left;
+  height: auto;
+}
+
+.blog_images_topiconright {
+  width: 100%;
+  float: left;
+  padding: 10px 0 0 0;
+}
+
+.blog_images_topiconright img {
+  width: 17px;
+  float: right;
+  height: auto;
+}
+
+.news_img {
+  width: 100%;
+  float: left;
+  width: 100%;
+  float: left;
+  padding: 0 15px;
+}
+
+.news_img img {
+  width: 100%;
+  float: left;
+  border-radius: 5px;
+}
+
+.news_img2 {
+  width: 100%;
+  float: left;
+  width: 100%;
+  float: left;
+  padding: 0 0;
+}
+
+.news_img2 img {
+  width: 100%;
+  float: left;
+  border-radius: 10px;
+}
+
+.newstext {
+  width: 100%;
+  float: left;
+  padding: 10px;
+}
+
+.newstext h6 {
+  font-size: 13px;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.newstext h2 {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 7px 0 5px;
+  margin: 0;
+}
+
+.newstext p {
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  line-height: 22px;
+  text-align: justify;
+}
+
+
+
+.recipes_bx_page {
+  padding: 10px 10px;
+  float: left;
+  width: 100%;
+}
+
+.hadding_main_details {
+  font-size: 20px;
+  padding: 5px 0;
+  margin: 0;
+}
+
+.post_details_news_page {
+  width: 100%;
+  float: left;
+  padding: 7px 0 0;
+}
+
+.tdb-block-inner {
+  display: flex;
+  align-items: center;
+  float: left;
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.tdb-author-photo img {
+  width: 26px;
+  height: 26px;
+  margin-right: 6px;
+  border-radius: 50%;
+}
+
+.tdb-author-by {
+  font-family: Rubik !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  font-weight: 400 !important;
+  text-transform: capitalize !important;
+  color: #000 !important;
+}
+
+.tdb-author-name {
+  color: #000;
+  font-family: Rubik !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  font-weight: 500 !important;
+  text-transform: capitalize !important;
+}
+
+.tdb-block-inner {
+  display: flex;
+  align-items: center;
+  float: left;
+  font-size: 14px;
+}
+
+.entry-date.updated.td-module-date {
+  padding: 7px 0 0 10px;
+}

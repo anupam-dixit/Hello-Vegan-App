@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-back-button style="color:#fff;"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title" slot="start" size="small" style="color:#fff;">Recipes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="sec" routerLink="/search-result"> <img src="/assets/icon/search.png" style="width: 22px;"></ion-button>
+      <ion-button color="sec" routerLink="/chat-list"> <img src="/assets/icon/chat.png" style="width: 24px;">
+      </ion-button>
+      <ion-button color="sec" routerLink="/notifications"> <img src="/assets/icon/bell.png" style="width: 24px;">
+        <ion-badge class="setbegde">{{notificationCount}}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="blog_list">
+    <div class="news_page">
+      <div class="recipes_bx_page">
+        <div class="recipes_detailspage">
+          <div class="news_page">
+            <div class="hadding_main_details">{{recipeData?.receipes?.title}}</div>
+            <div class="post_details_news_page">
+              <div class="tdb-block-inner td-fix-index">
+                <a class="tdb-author-photo" href="/menu/public-profile/{{recipeData?.receipes?.user_id}}" title="{{recipeData?.receipes?.title}}">
+                <img [src]="recipeData?.receipes?.user_profile ? environment.liveDomain+ recipeData?.receipes?.user_profile : environment.liveDomain+'public/frontend/images/f_icon_user.jpg'" />
+                <!-- <img src="{{environment.liveDomain+ recipeData?.receipes?.user_profile}}">  -->
+              </a>
+                <div class="tdb-author-name-wrap"><span class="tdb-author-by">By</span> <a class="tdb-author-name" href="/menu/public-profile/{{recipeData?.receipes?.user_id}}">{{recipeData?.receipes?.user_name}}</a></div>
+              </div>
+              <div class="tdb-block-inner td-fix-index">
+                <time class="entry-date updated td-module-date" >{{recipeData?.receipes?.updated_at | date:'dd MMM, yyyy'}}</time>
+              </div>
+            </div>
+          </div>
+          <div class="tag_recipes">
+            <ul>
+              <h3> Tags :- </h3>
+              <li *ngFor="let tag of recipeData?.receipes?.tags?.split(',')"><a>{{tag}}</a></li>
+            </ul>
+          </div>
+          <div class="recipes_details_images"> <img src="{{recipeData?.receipes?.image?environment.liveDomain+ recipeData?.receipes?.image:Env.no_img}}"> </div>
+          <p innerHtml="{{recipeData?.receipes?.content}}"></p>
+          <div class="recipes_detail_category">
+            <ul>
+              <li> <span><img src="/assets/images/category_icon.png"></span>
+                <h2>Category</h2>
+                <p>{{recipeData?.receipes?.category_name}}</p>
+              </li>
+              <li> <span><img src="/assets/images/cooking_time.png"></span>
+                <h2>Cooking Time</h2>
+                <p>{{recipeData?.receipes?.cooking_time}}</p>
+              </li>
+              <li> <span><img src="/assets/images/location_icon.png"></span>
+                <h2>Location</h2>
+                <p>{{recipeData?.receipes?.location}}</p>
+              </li>
+            </ul>
+          </div>
+          <div class="video_recipes_details">
+            <h2>Ingredients</h2>
+            {{recipeData?.receipes?.ingredients}}
+            <p innerHtml="{{recipeData?.receipes?.ingredients}}"></p>
+          </div>
+          <div class="video_recipes_details" *ngIf="recipeData?.receipes?.video">
+            <h2>Video</h2>
+            <video controls>
+              <source src="{{environment.liveDomain+ recipeData?.receipes?.video}}" type="video/mp4">
+              Your browser does not support the video tag. </video>
+          </div>
+          <div class="steps_recipes_details">
+            <h2> Steps </h2>
+            <p innerHtml="{{recipeData?.receipes?.steps}}"></p>
+          </div>
+          <div class="gallery_recipes_details" *ngIf="recipeData?.receipes?.galleryimage">
+            <h2> Gallery </h2>
+            <div class="blog_home mynews">
+              <div class="cslide">
+                <div *ngFor="let img of recipeData?.receipes?.galleryimage.split(',')" class="cslideinner" style="overflow: hidden;height: 150px;"> <img src="{{environment.liveDomain+ img}}">
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog_comment">
+      <div class="detailBox">
+        <div class="titleBox" *ngIf="recipeData?.comments?.length">
+          <label>Comment </label>
+          <!-- <button class="viewoldcommetns">View Old Commetns</button> -->
+        </div>
+        <div class="actionBox">
+          <ul class="commentList">
+            <li *ngFor="let data of recipeData?.comments">
+              <div class="commenterImage">
+                <img [src]="data.users_profile_image ? environment.liveDomain+ data.users_profile_image : environment.liveDomain+'public/frontend/images/f_icon_user.jpg'" />
+                <!-- <img src="{{environment.liveDomain+ data.users_profile_image}}" /> -->
+              </div>
+              <div class="commentText">
+                <h2>{{data.users_name}}</h2>
+                <p class="">{{data.message}}</p>
+                <span class="date sub-text">on {{data.created_at | date:'MMM dd, yyyy'}}</span> </div>
+            </li>
+          </ul>
+          <div class="row">
+            <div class="col">
+              <form class="form-inline" role="form" (ngSubmit)="f.form.valid && addComment()" #f="ngForm">
+                <div class="form-group">
+                  <h2>LEAVE A REPLY </h2>
+                  <ion-textarea id="message" name="message" [(ngModel)]="form.message" #message="ngModel" class="form-control comment_here" placeholder="Enter your comment here..." required></ion-textarea>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="post_comment">Post Comment</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ion-content>
