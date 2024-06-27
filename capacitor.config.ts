@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.hello.vegans',
+  appId: 'com.vegans.hello',
   appName: 'Hello Vegans',
   webDir: 'www',
   server: {
