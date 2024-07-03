@@ -30,7 +30,7 @@
                   </ion-select>
                 </div>
                 <div class="mobile_number_text">
-                  <ion-input [ngClass]="f.submitted && mobile_no.invalid ? 'inputerror' : ''" [(ngModel)]="form.mobile_no" required #mobile_no="ngModel" name="mobile_no" maxlength="10" pattern="[0-9]{10}" type="tel" placeholder="Mobile no"></ion-input>
+                  <ion-input [ngClass]="f.submitted && mobile_no.invalid ? 'inputerror' : ''" [(ngModel)]="form.mobile_no" #mobile_no="ngModel" name="mobile_no" maxlength="10" pattern="[0-9]{10}" type="tel" placeholder="Mobile no"></ion-input>
                 </div>
               </div>
               <ion-label [ngClass]="f.submitted && password.invalid ? 'labelerror' : ''"> Password </ion-label>
