@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import {myLib} from "../../helpers/myLib";
 import {environment} from "../../environments/environment";
+import {endpoints} from "../../environments/endpoints";
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ import {environment} from "../../environments/environment";
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
+  confDelAc:boolean=false
   profileData: any;
   notificationCount: any;
   segmentValue: any;
@@ -26,6 +27,9 @@ export class ProfilePage implements OnInit {
   comments: any;
   photos: any;
   subscription:any
+  runtimeVars:{
+    loadingDelAc:any
+  }
   constructor(private api: ApiService, private router: Router, private other: OtherService, private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
@@ -204,4 +208,22 @@ export class ProfilePage implements OnInit {
 
   protected readonly JSON = JSON;
   protected readonly environment = environment;
+
+  async deleteUserAc() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading...',
+    });
+    loading.present()
+    this.api.post(endpoints.user.updateStts, {
+      id: JSON.parse(localStorage.getItem('userData'))?.id,
+      status: 0
+    }).subscribe((d: any) => {
+      this.other.presentToast(d?.message, 'information-circle-outline', d?.status ? "success" : "danger");
+      loading.dismiss()
+      if (d?.status) {
+        localStorage.clear()
+        location.replace("/login")
+      }
+    })
+  }
 }

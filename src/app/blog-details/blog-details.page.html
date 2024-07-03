@@ -46,7 +46,23 @@
               <ion-textarea id="message" name="message" [(ngModel)]="form.message" #message="ngModel" class="form-control comment_here" placeholder="Enter your comment here..." required></ion-textarea>
             </div>
             <div class="form-group">
-              <button type="submit" class="post_comment">Post Comment</button>
+              <div class="row ion-align-items-center">
+                <div class="col ion-text-left">
+                  <div class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle btn-warning" type="button" id="ddw_vegan_log_2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      option
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="ddw_vegan_log_2">
+                      <a (click)="report('blog',blogId)" class="dropdown-item">Report</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col ion-text-right">
+                  <button type="submit" class="post_comment">Post Comment</button>
+                </div>
+              </div>
+
+
             </div>
           </form>
         </div>

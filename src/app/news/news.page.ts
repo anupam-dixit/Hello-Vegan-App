@@ -3,7 +3,7 @@ import { ApiService } from '../service/api/api.service';
 import { OtherService } from '../service/other/other.service';
 import { Router } from '@angular/router';
 import {environment} from "../../environments/environment";
-
+declare var $:any
 @Component({
   selector: 'app-news',
   templateUrl: './news.page.html',

@@ -57,6 +57,39 @@
     <button class="actions__btn" [routerLink]="['/profile-edit']">
       <ion-icon name="create" style="color: #000;"></ion-icon>
     </button>
+
+
+    <ion-button color="danger" id="open-modal" expand="block">Delete Account</ion-button>
+
+    <ion-modal
+      trigger="open-modal"
+      [initialBreakpoint]="0.40"
+      [breakpoints]="[0, 0.25, 0.5, 0.75]"
+      handleBehavior="cycle"
+    >
+      <ng-template>
+        <ion-content class="ion-padding">
+          <div  class="ion-margin-top">
+            <div class="row">
+              <div class="col-5"></div>
+              <div class="col">
+                <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/11503/11503034.png">
+              </div>
+              <div class="col-5"></div>
+            </div>
+            <h5 class="text-danger ion-text-center">Dou you really want to delete your account?</h5>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="9"></ion-col>
+                <ion-col size="3">
+                  <ion-button color="danger" expand="block" (click)="deleteUserAc()">Delete</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </section>
   <section>
     <div class="row" *ngIf="subscription?.subscription">

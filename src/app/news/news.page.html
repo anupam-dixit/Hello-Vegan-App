@@ -65,28 +65,34 @@
         </ion-grid>
       </div>
 
-      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+      <div class="row">
+        <div class="col">
+          <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
 
-        <div class="carousel-inner">
-          <ng-container *ngFor="let data of activeData;index as i;first as isFirst">
-            <div class="carousel-item {{(i===0)?'active':''}} rounded-lg">
-              <img src="{{environment.liveDomain+data.image}}" class="d-block w-100 rounded" style="height: 300px;object-fit:cover" alt="...">
-              <div class="carousel-caption d-md-block">
-                <h5>{{data.title}}</h5>
-                <p class="text-truncate" innerHtml="{{data?.content}}"></p>
-              </div>
+            <div class="carousel-inner">
+              <ng-container *ngFor="let data of activeData;index as i;first as isFirst">
+                <div class="carousel-item {{(i===0)?'active':''}} rounded-lg">
+                  <img src="{{environment.liveDomain+data.image}}" class="d-block w-100 rounded" style="height: 300px;object-fit:cover" alt="...">
+                  <div class="carousel-caption d-md-block">
+                    <h5>{{data.title}}</h5>
+                    <p class="text-truncate" innerHtml="{{data?.content}}"></p>
+                  </div>
+                </div>
+              </ng-container>
             </div>
-          </ng-container>
+            <button class="carousel-control-prev" type="button" data-target="#caroupacselExampleCaptions" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </button>
+          </div>
+
         </div>
-        <button class="carousel-control-prev" type="button" data-target="#caroupacselExampleCaptions" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </button>
       </div>
+
     </div>
   </div>
 </ion-content>

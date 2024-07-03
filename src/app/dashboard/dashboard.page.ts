@@ -4,6 +4,8 @@ import { OtherService } from '../service/other/other.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import {environment} from "../../environments/environment";
+import {endpoints} from "../../environments/endpoints";
+import {myLib} from "../../helpers/myLib";
 declare var $: any;
 declare var google: any;
 @Component({
@@ -53,7 +55,6 @@ export class DashboardPage implements OnInit {
 
 
   async likePost(status:any, post_id:any) {
-    console.log(status)
     const loading = await this.loadingCtrl.create({
       message: 'Loading...',
     });
@@ -83,4 +84,17 @@ export class DashboardPage implements OnInit {
   }
 
   protected readonly environment = environment;
+
+  async report(target_type: string, target_id: any) {
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading...',
+    });
+    this.presentLoading(loading);
+    this.api.post(endpoints.report.create,{
+      target_type:target_type,target_id:target_id,created_by:myLib.auth.get()?.id
+    }).subscribe((d:any)=>{
+      this.other.presentToast(d?.message, 'information-circle-outline', d?.status?"success":"danger");
+      loading.dismiss()
+    })
+  }
 }

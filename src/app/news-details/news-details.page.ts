@@ -4,6 +4,8 @@ import { OtherService } from '../service/other/other.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ActionSheetController, LoadingController } from '@ionic/angular';
 import {Env} from "../../environments/env";
+import {endpoints} from "../../environments/endpoints";
+import {myLib} from "../../helpers/myLib";
 
 @Component({
   selector: 'app-news-details',
@@ -64,6 +66,19 @@ export class NewsDetailsPage implements OnInit {
     err=>{
       loading.dismiss();
       this.other.presentToast('Something went Wrong!!','information-circle-outline','danger');
+    })
+  }
+
+  async report(target_type: string, target_id: any) {
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading...',
+    });
+    this.presentLoading(loading);
+    this.api.post(endpoints.report.create,{
+      target_type:target_type,target_id:target_id,created_by:myLib.auth.get()?.id
+    }).subscribe((d:any)=>{
+      this.other.presentToast(d?.message, 'information-circle-outline', d?.status?"success":"danger");
+      loading.dismiss()
     })
   }
 
