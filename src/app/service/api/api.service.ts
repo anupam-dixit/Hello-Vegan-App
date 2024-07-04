@@ -246,6 +246,9 @@ export class ApiService {
   privacy(){
     return this.http.get(environment.baseUrl + '/pages?pageName=privacy')
   }
+  eula(){
+    return this.http.get(environment.baseUrl + '/pages?pageName=eula')
+  }
   cookie(){
     return this.http.get(environment.baseUrl + '/pages?pageName=cookie')
   }

@@ -66,3 +66,23 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="eulaModal" tabindex="-1" aria-labelledby="eulaModalLabel" aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eulaModalLabel">EULA</h5>
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+      </div>
+      <div class="modal-body">
+        <h5 class="text-secondary">Please read and accept to proceed.</h5>
+        <div [innerHTML]="eulaData"></div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="logout()" class="btn btn-secondary">Cancel</button>
+        <button type="button" (click)="accept()" class="btn btn-primary">Agree</button>
+      </div>
+    </div>
+  </div>
+</div>

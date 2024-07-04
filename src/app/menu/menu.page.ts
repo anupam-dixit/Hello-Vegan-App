@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {environment} from "../../environments/environment";
+import {ApiService} from "../service/api/api.service";
+import {LoadingController} from "@ionic/angular";
 declare var $: any;
 declare var google: any;
 @Component({
@@ -11,15 +13,21 @@ declare var google: any;
 export class MenuPage implements OnInit {
 
   userData:any = JSON.parse(localStorage.getItem('userData') || '{}');
+  eulaData:any
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private api:ApiService,private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     // this.other.notificationCount.subscribe(res => {
     //   this.notificationCount = res;
     // })
     // A $( document ).ready() block.
+    const ctx=this
     $( document ).ready(function() {
+      if (!localStorage.getItem("eula")){
+        ctx.eula()
+      }
+
       $("#basicExampleModal").on('hide.bs.modal', function(){
         // $(".skiptranslate").css('visibility','hidden')
       });
@@ -49,6 +57,25 @@ export class MenuPage implements OnInit {
   launchModal() {
     $('#basicExampleModal').modal('show')
   }
+  async eula(){
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading...',
+    });
+    await loading.present();
+    this.api.eula().subscribe(res => {
+        loading.dismiss();
+        this.eulaData = res['page_details'][0].page_content;
+        $("#eulaModal").modal('show')
+      },
+      err=>{
+        loading.dismiss();
+      })
+  }
 
   protected readonly environment = environment;
+
+  accept() {
+    localStorage.setItem("eula",new Date().toString())
+    $('#eulaModal').modal('hide')
+  }
 }
