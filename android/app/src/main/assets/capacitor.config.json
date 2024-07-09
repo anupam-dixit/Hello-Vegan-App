@@ -1,0 +1,8 @@
+{
+	"appId": "com.vegans.hello",
+	"appName": "Hello Vegans",
+	"webDir": "www",
+	"server": {
+		"androidScheme": "http"
+	}
+}
