@@ -25,7 +25,7 @@
             <div class="post_details_news_page">
               <div class="tdb-block-inner td-fix-index">
                 <a class="tdb-author-photo" title="David Lee">
-                  <img src="{{Env.BasePoint+productData?.product_details?.users_profile_image}}">
+                  <img (error)="Env.no_img" src="{{Env.BasePoint+productData?.product_details?.users_profile_image}}">
                 </a>
                 <div class="tdb-author-name-wrap"><span class="tdb-author-by">By</span> <a class="tdb-author-name">{{productData?.product_details?.users_name}}</a></div>
               </div>

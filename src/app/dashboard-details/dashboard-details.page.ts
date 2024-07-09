@@ -4,6 +4,7 @@ import { OtherService } from '../service/other/other.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import {environment} from "../../environments/environment";
+import {Env} from "../../environments/env";
 
 @Component({
   selector: 'app-dashboard-details',
@@ -65,4 +66,5 @@ export class DashboardDetailsPage implements OnInit {
   }
 
   protected readonly environment = environment;
+  protected readonly Env = Env;
 }

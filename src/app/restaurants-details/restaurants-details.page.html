@@ -86,8 +86,8 @@
       </div>
       <hr class="hr-grey-light margin-t-20">
     </div>
-    <div class="photos">
-      <h2>Photos</h2>
+    <div class="photos" *ngIf="restData?.restudent_details?.gallary">
+      <h2>Photos {{restData?.restudent_details?.gallary}}</h2>
       <div class="gallery_main">
         <div class="gallery_main_all">
           <div class="gallery_card" *ngFor="let data of restData?.restudent_details?.gallary.split(',')">

@@ -39,7 +39,7 @@ export class AddBlogPage implements OnInit {
     this.form.user_id = JSON.parse(localStorage.getItem('userData'))?.id
     this.api.addBlog(this.form).subscribe(res => {
       loading.dismiss();
-      this.other.presentToast('Blog Added successful !!', 'checkmark-circle-outline', 'success');
+      this.other.presentToast(res['message'], 'checkmark-circle-outline', 'success');
       history.back();
     },
       err => {
@@ -54,6 +54,9 @@ export class AddBlogPage implements OnInit {
       this.form.image = obj.imagedata;
     })
   }
+  // async chooseImage($event: any) {
+  //   this.form.image=$event.target.files[0]
+  // }
 
   removeImage(i) {
     this.form.galleryimage.splice(i, 1);
@@ -120,7 +123,7 @@ export class AddBlogPage implements OnInit {
       var dirpath = videoUrl.substr(0, videoUrl.lastIndexOf('/') + 1);
 
       dirpath = dirpath.includes("file://") ? dirpath : "file://" + dirpath;
-      
+
       try {
         var dirUrl = await this.file.resolveDirectoryUrl(dirpath);
         var retrievedFile = await this.file.getFile(dirUrl, filename, {});

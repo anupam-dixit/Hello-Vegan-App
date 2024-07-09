@@ -3,5 +3,12 @@ export const Env = {
   // EndPoint:"http://vegan/ApiController/",
   BasePoint:"https://hello-vegans.com/",
   EndPoint:"https://hello-vegans.com/ApiController/",
-  no_img:'/assets/images/no_img.jpg'
+  no_img:'/assets/images/no_img.jpg',
+  messages:{
+    blog:{
+      add:{
+        pos:"Added! please wait"
+      }
+    }
+  }
 };
