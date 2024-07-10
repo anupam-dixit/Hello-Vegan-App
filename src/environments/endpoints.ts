@@ -2,7 +2,8 @@ import {Env} from "./env";
 
 export const endpoints = {
  subscriptions:{
-   listAll:Env.EndPoint+'allSubscription'
+   listAll:Env.EndPoint+'allSubscription',
+   getPurchaseLink:Env.EndPoint+'subscriptionPurchaseLink',
  },
   group:{
     create:Env.EndPoint+'createGroup'

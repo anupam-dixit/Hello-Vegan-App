@@ -8,7 +8,7 @@
             <ion-grid style="padding: 6px 0 0;">
                 <ion-row [routerLink]="['/menu/profile',userData.id]">
                   <ion-col size='4' style="display: flex;">
-                    <div class="user_icon"><img src="{{environment.liveDomain+userData?.profile_image}}"></div>
+                    <div class="user_icon"><img src="{{userData?.profile_image?environment.liveDomain+userData?.profile_image:Env.no_img}}" (error)="Env.no_img"></div>
                   </ion-col>
                   <ion-col size='8'>
                     <div class="user_name">

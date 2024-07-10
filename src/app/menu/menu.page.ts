@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {environment} from "../../environments/environment";
 import {ApiService} from "../service/api/api.service";
 import {LoadingController} from "@ionic/angular";
+import {Env} from "../../environments/env";
 declare var $: any;
 declare var google: any;
 @Component({
@@ -78,4 +79,6 @@ export class MenuPage implements OnInit {
     localStorage.setItem("eula",new Date().toString())
     $('#eulaModal').modal('hide')
   }
+
+  protected readonly Env = Env;
 }

@@ -57,7 +57,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-12 col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" *ngFor="let s of allSubscriptions">
-        <a [href]="Env.BasePoint+'subscription/purchase/'+s.id+'/'+myLib.auth.get().id">
+        <a (click)="getLink(s?.id)">
           <div class="card mb-3" *ngIf="parseInt(s.price)>parseInt(subscription?.subscription?.price)">
             <div class="row">
               <div class="col-3">
