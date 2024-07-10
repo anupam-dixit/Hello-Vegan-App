@@ -90,28 +90,28 @@
         <button routerLink="/menu/product">View All</button>
       </div>
     </div>
-    <div class="best_cook_bx">
-      <div class="titel_all">
-        <h2>Best Cook </h2>
-      </div>
-      <div class="one_tab">
-        <ion-grid style="padding: 0;">
-          <ion-row>
-            <ion-col size="4" style="padding-left: 0;"
-              *ngFor="let data of recommendationData?.recommendationCook | slice:0:3"
-              [routerLink]="['/cook-profile',data['id']]">
-              <div class="best_cookone">
-                <div class="cookig"> <img src="{{data['image']?environment.liveDomain+data['image']:Env.no_img}}"> </div>
-                <div class="cookname">{{data['name']}}</div>
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-      <div class="seeall">
-        <button routerLink="/menu/cook">View All</button>
-      </div>
-    </div>
+<!--    <div class="best_cook_bx">-->
+<!--      <div class="titel_all">-->
+<!--        <h2>Best Cook </h2>-->
+<!--      </div>-->
+<!--      <div class="one_tab">-->
+<!--        <ion-grid style="padding: 0;">-->
+<!--          <ion-row>-->
+<!--            <ion-col size="4" style="padding-left: 0;"-->
+<!--              *ngFor="let data of recommendationData?.recommendationCook | slice:0:3"-->
+<!--              [routerLink]="['/cook-profile',data['id']]">-->
+<!--              <div class="best_cookone">-->
+<!--                <div class="cookig"> <img src="{{data['image']?environment.liveDomain+data['image']:Env.no_img}}"> </div>-->
+<!--                <div class="cookname">{{data['name']}}</div>-->
+<!--              </div>-->
+<!--            </ion-col>-->
+<!--          </ion-row>-->
+<!--        </ion-grid>-->
+<!--      </div>-->
+<!--      <div class="seeall">-->
+<!--        <button routerLink="/menu/cook">View All</button>-->
+<!--      </div>-->
+<!--    </div>-->
 
     <div class="recipes_page">
       <div class="titel_all">
