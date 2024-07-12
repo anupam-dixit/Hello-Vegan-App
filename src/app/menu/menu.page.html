@@ -1,7 +1,7 @@
 <ion-split-pane contentId="main-content">
   <ion-menu contentId="main-content">
     <ion-header>
-      <ion-menu-toggle style="outline: 0;">
+      <ion-menu-toggle [autoHide]="false" style="outline: 0;">
         <div class="sidmenu_bg">
           <div><img style="height: 115px;width: 100%;" src="{{environment.liveDomain+userData?.cover_image}}"></div>
           <div class="sidmenu_user">
