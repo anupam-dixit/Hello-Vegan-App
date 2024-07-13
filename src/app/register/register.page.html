@@ -22,17 +22,17 @@
               <ion-input [ngClass]="f.submitted && name.invalid ? 'inputerror' : ''" [(ngModel)]="form.last_name" required #last_name="ngModel" name="last_name" type="text" placeholder="Last Name"></ion-input>
               <ion-label [ngClass]="f.submitted && email.invalid ? 'labelerror' : ''"> Email ID</ion-label>
               <ion-input [ngClass]="f.submitted && email.invalid ? 'inputerror' : ''" [(ngModel)]="form.email" required #email="ngModel" name="email" type="text" placeholder="Email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z](?:[a-zA-Z]{0,61}[a-zA-Z])+\.[a-zA-Z](?:[a-zA-Z]{0,61}[a-zA-Z])*$"></ion-input>
-              <div class="mobile_number">
-                <ion-label [ngClass]="f.submitted && mobile_no.invalid ? 'labelerror' : ''"> Mobile Number</ion-label>
-                <div class="mobile_number_code">
-                  <ion-select interface="popover" placeholder="Code" [(ngModel)]="form.countrycode" required #countrycode="ngModel" name="countrycode">
-                    <ion-select-option value="{{data.phonecode}}" *ngFor="let data of countryCodeList?.countries"> +{{data.phonecode}} {{data.nicename}}</ion-select-option>
-                  </ion-select>
-                </div>
-                <div class="mobile_number_text">
-                  <ion-input [ngClass]="f.submitted && mobile_no.invalid ? 'inputerror' : ''" [(ngModel)]="form.mobile_no" #mobile_no="ngModel" name="mobile_no" maxlength="10" pattern="[0-9]{10}" type="tel" placeholder="Mobile no"></ion-input>
-                </div>
-              </div>
+<!--              <div class="mobile_number">-->
+<!--                <ion-label [ngClass]="f.submitted && mobile_no.invalid ? 'labelerror' : ''"> Mobile Number</ion-label>-->
+<!--                <div class="mobile_number_code">-->
+<!--                  <ion-select interface="popover" placeholder="Code" [(ngModel)]="form.countrycode" required #countrycode="ngModel" name="countrycode">-->
+<!--                    <ion-select-option value="{{data.phonecode}}" *ngFor="let data of countryCodeList?.countries"> +{{data.phonecode}} {{data.nicename}}</ion-select-option>-->
+<!--                  </ion-select>-->
+<!--                </div>-->
+<!--                <div class="mobile_number_text">-->
+<!--                  <ion-input [ngClass]="f.submitted && mobile_no.invalid ? 'inputerror' : ''" [(ngModel)]="form.mobile_no" #mobile_no="ngModel" name="mobile_no" maxlength="10" pattern="[0-9]{10}" type="tel" placeholder="Mobile no"></ion-input>-->
+<!--                </div>-->
+<!--              </div>-->
               <ion-label [ngClass]="f.submitted && password.invalid ? 'labelerror' : ''"> Password </ion-label>
               <ion-input [ngClass]="f.submitted && password.invalid ? 'inputerror' : ''" [(ngModel)]="form.password" required #password="ngModel" name="password" type="password" placeholder="Password "></ion-input>
               <ion-label [ngClass]="f.submitted && confirm_password.invalid ? 'labelerror' : ''"> Retype
