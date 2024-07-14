@@ -21,10 +21,11 @@
           <!-- <ckeditor [editor]="Editor" [(ngModel)]="form.create_post_content" name="create_post_content" #create_post_content="ngModel"></ckeditor> -->
           <quill-editor [(ngModel)]="form.create_post_content" name="create_post_content" #create_post_content="ngModel"></quill-editor>
         </div>
-        <div class="images_post" (click)="captureImage()">
-          <img *ngIf="form.create_post_image" src="data:image/png;base64,{{form.create_post_image}}">
-          <img *ngIf="!form.create_post_image" src="/assets/icon/upload_images.png">
+        <input class="form-control" (change)="chooseImage($event)" type="file" accept="image/*">
+        <div class="images_post" *ngIf="targetFile">
+          <img src="{{targetFile}}">
         </div>
+
       <label class="text-danger" *ngIf="!form.create_post_content || !form.create_post_image">Enter Post Details or select image</label>
       </div>
       <div class="Post_file ">

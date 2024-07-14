@@ -20,6 +20,7 @@ export class ShareYourThoughtsPage implements OnInit {
     create_post_image: null,
     file_extension: null
   }
+  targetFile:any
   profilePhoto = JSON.parse(localStorage.getItem('userData')).profile_image;
   mySub=null
   constructor(private api: ApiService, private router: Router, private other: OtherService, private actionSheetController: ActionSheetController, private loadingCtrl: LoadingController) {
@@ -36,12 +37,19 @@ export class ShareYourThoughtsPage implements OnInit {
   }
 
   async addPost() {
+
     const loading = await this.loadingCtrl.create({
       message: 'Loading...',
     });
     this.presentLoading(loading);
     if (this.form['create_post_content'] != null || this.form['create_post_image'] != null) {
-      this.form.user_id = JSON.parse(localStorage.getItem('userData'))?.id
+
+      let formData=new FormData()
+      alert(myLib.auth.get()?.id+'fg')
+      formData.append("create_post_content",this.form['create_post_content'])
+      formData.append("user_id",myLib.auth.get()?.id)
+      formData.append("create_post_image",this.form['create_post_image'])
+      formData.append("file_extension",this.form['file_extension'])
 
       this.api.dashboardAddPost(this.form).subscribe(res => {
         loading.dismiss();
@@ -130,4 +138,12 @@ export class ShareYourThoughtsPage implements OnInit {
   protected readonly environment = environment;
   protected readonly localStorage = localStorage;
   protected readonly JSON = JSON;
+
+  async chooseImage($event: any) {
+    this.targetFile=await myLib.toBase64($event.target.files[0])
+    this.form.create_post_image=$event.target.files[0]
+    this.form.file_extension=myLib.fileExtension($event.target.files[0])
+  }
+
+
 }
