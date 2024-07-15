@@ -16,10 +16,12 @@
     </div>
     <form (ngSubmit)="(form.create_post_content || form.create_post_image) && addPost()" #f="ngForm">
       <div class="post_log">
+        <ion-textarea [(ngModel)]="form.create_post_content" [rows]="5" label="Input content here" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-textarea>
         <div class="share_post_texttarea">
+<!--          <ion-textarea [rows]="6" label="Input content here" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-textarea>-->
           <!-- <ion-item> -->
           <!-- <ckeditor [editor]="Editor" [(ngModel)]="form.create_post_content" name="create_post_content" #create_post_content="ngModel"></ckeditor> -->
-          <quill-editor [(ngModel)]="form.create_post_content" name="create_post_content" #create_post_content="ngModel"></quill-editor>
+<!--          <quill-editor [(ngModel)]="form.create_post_content" name="create_post_content" #create_post_content="ngModel"></quill-editor>-->
         </div>
         <input class="form-control" (change)="chooseImage($event)" type="file" accept="image/*">
         <div class="images_post" *ngIf="targetFile">

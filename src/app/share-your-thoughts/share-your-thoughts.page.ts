@@ -45,13 +45,12 @@ export class ShareYourThoughtsPage implements OnInit {
     if (this.form['create_post_content'] != null || this.form['create_post_image'] != null) {
 
       let formData=new FormData()
-      alert(myLib.auth.get()?.id+'fg')
-      formData.append("create_post_content",this.form['create_post_content'])
-      formData.append("user_id",myLib.auth.get()?.id)
-      formData.append("create_post_image",this.form['create_post_image'])
-      formData.append("file_extension",this.form['file_extension'])
+      formData.append("create_post_content",this.form.create_post_content)
+      formData.append("user_id","26")
+      formData.append("create_post_image",this.form.create_post_image)
+      formData.append("file_extension",this.form.file_extension)
 
-      this.api.dashboardAddPost(this.form).subscribe(res => {
+      this.api.dashboardAddPost(formData).subscribe(res => {
         loading.dismiss();
         this.other.presentToast('Post successful !!', 'checkmark-circle-outline', 'success');
         history.back()
